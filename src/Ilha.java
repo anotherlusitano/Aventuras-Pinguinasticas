@@ -29,13 +29,13 @@ public class Ilha {
     private Dificuldade dificuldade_da_ilha;
 
     /// Uma lista de nomes para as Ilhas de {@link Dificuldade#FACIL}
-    private static final List<String> NOMES_FACIL = new ArrayList<>(List.of("Bali", "Fiji", "Malta"));
+    private static final List<String> NOMES_FACIL = new ArrayList<>(List.of("Ilha do GPT", "Piaget", "Ilha do W3"));
 
     /// Uma lista de nomes para as Ilhas de {@link Dificuldade#MEDIO}
-    private static final List<String> NOMES_MEDIO = new ArrayList<>(List.of("Skye", "Ibiza", "Capri"));
+    private static final List<String> NOMES_MEDIO = new ArrayList<>(List.of("Setubal", "Reddit", "Ponto Medio"));
 
     /// Uma lista de nomes para as Ilhas de {@link Dificuldade#DIFICIL}
-    private static final List<String> NOMES_DIFICIL = new ArrayList<>(List.of("Santorini", "Corsica", "Iceland"));
+    private static final List<String> NOMES_DIFICIL = new ArrayList<>(List.of("Amadora", "Africa", "4chan"));
 
     /// E a variavel que vamos usar para obter os numeros aleatorios
     private static final Random RANDOM = new Random();
