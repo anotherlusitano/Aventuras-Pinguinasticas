@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Esta e a classe que implementa toda a logica do Mapa.
  * <br> <br>
@@ -14,9 +16,9 @@ public class Mapa {
     private Barco barco;
 
     /** Sao as {@link Ilha} que vao ser geradas dentro do {@link Mapa#mapa} */
-    private Ilha[] ilhas;
+    private List<Ilha> ilhas;
 
-    public Mapa(Barco barco, Ilha[] ilhas) {
+    public Mapa(Barco barco, List<Ilha> ilhas) {
         this.barco = barco;
         this.ilhas = ilhas;
     }
@@ -37,11 +39,11 @@ public class Mapa {
         this.barco = barco;
     }
 
-    public Ilha[] getIlhas() {
+    public List<Ilha> getIlhas() {
         return ilhas;
     }
 
-    public void setIlhas(Ilha[] ilhas) {
+    public void setIlhas(List<Ilha> ilhas) {
         this.ilhas = ilhas;
     }
 }
