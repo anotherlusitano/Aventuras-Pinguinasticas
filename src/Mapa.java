@@ -16,11 +16,14 @@ public class Mapa {
     private Barco barco;
 
     /** Sao as {@link Ilha} que vao ser geradas dentro do {@link Mapa#mapa} */
-    private List<Ilha> ilhas;
+    private Ilha[] ilhas;
 
-    public Mapa(Barco barco, List<Ilha> ilhas) {
+    public Mapa(Barco barco, Ilha[] ilhas) {
+        /// Primeiro vamos receber o Barco e as Ilhas
         this.barco = barco;
         this.ilhas = ilhas;
+
+        /// Depois vamos mete-los no Mapa quando ele e criado
     }
 
     public int[][] getMapa() {
@@ -39,11 +42,30 @@ public class Mapa {
         this.barco = barco;
     }
 
-    public List<Ilha> getIlhas() {
+    public Ilha[] getIlhas() {
         return ilhas;
     }
 
-    public void setIlhas(List<Ilha> ilhas) {
+    public void setIlhas(Ilha[] ilhas) {
         this.ilhas = ilhas;
     }
+
+    /**
+     * Esta funçao faz que o Mapa se reconstrua
+     * com as coordenadas das {@link Ilha}s e do {@link Jogador}
+      */
+    public void atualizarMapa() {
+        this.mapa = new int[10][10];
+    }
+
+    /// Esta funçao mostra o mapa na consola
+    public void mostrar() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(this.mapa[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 }
