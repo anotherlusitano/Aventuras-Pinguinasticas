@@ -7,92 +7,65 @@
 import java.util.*;
 
 /**
+ * Serve para medir qual a dificuldade da ilha, por exemplo: <br>
+ * uma ilha com dificuldade <i>FACIL</i> vai gastar menos recursos que uma ilha com dificuldade <i>DIFICIL</i>
+ */
+enum Dificuldade {
+    /// E uma {@link Ilha} de dificuldade dificil
+    DIFICIL,
+    /// E uma {@link Ilha} de dificuldade mediana
+    MEDIO,
+    /// E uma {@link Ilha} de dificuldade facil
+    FACIL
+}
+
+/**
  * Esta e a classe que implementa toda a logica das Ilhas.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
  * {@link Ilha#nome} - e o nome da Ilha <br>
- * {@link Ilha#pos_x} - e a posicao X da Ilha no {@link Mapa#mapa} <br>
- * {@link Ilha#pos_y} - e a posicao Y da Ilha no {@link Mapa#mapa} <br>
  * {@link Ilha#dificuldade_da_ilha} - e o {@link Dificuldade} da Ilha
  */
 public class Ilha {
-    /** E o nome da Ilha */
+    /** E o nome da {@link Ilha} */
     private String nome;
-
-    /** E a posicao X da {@link Ilha} dentro do {@link Mapa#mapa} */
-    private int pos_x;
-
-    /** E a posicao Y da {@link Ilha} dentro do {@link Mapa#mapa} */
-    private int pos_y;
 
     /** E a {@link Dificuldade} da {@link Ilha} */
     private Dificuldade dificuldade_da_ilha;
 
-    /// Uma lista de nomes para as Ilhas de {@link Dificuldade#FACIL}
-    private static final List<String> NOMES_FACIL = new ArrayList<>(List.of("Ilha do GPT", "Piaget", "Ilha do W3"));
-
-    /// Uma lista de nomes para as Ilhas de {@link Dificuldade#MEDIO}
-    private static final List<String> NOMES_MEDIO = new ArrayList<>(List.of("Setubal", "Reddit", "Ponto Medio"));
-
-    /// Uma lista de nomes para as Ilhas de {@link Dificuldade#DIFICIL}
-    private static final List<String> NOMES_DIFICIL = new ArrayList<>(List.of("Amadora", "Africa", "4chan"));
-
-    /// E a variavel que vamos usar para obter os numeros aleatorios
-    private static final Random RANDOM = new Random();
+    /** E as {@link Coordenada} da {@link Ilha} */
+    private Coordenada coordenadas;
 
     /// Construtor inicial da Ilha
-    public Ilha(String nome, int posX, int posY, Dificuldade dificuldadeDaIlha) {
+    public Ilha(String nome, Dificuldade dificuldadeDaIlha, Coordenada coordenadas) {
         this.nome = nome;
-        pos_x = posX;
-        pos_y = posY;
         this.dificuldade_da_ilha = dificuldadeDaIlha;
+        this.coordenadas = coordenadas;
+    }
+
+    public static Dificuldade gerarDificuldade() {
+        final Random RANDOM = new Random();
+
+        Dificuldade[] todas_dificuldades = Dificuldade.values();
+        int indice_aleatorio = RANDOM.nextInt(todas_dificuldades.length);
+
+        Dificuldade dificuldade_da_ilha = todas_dificuldades[indice_aleatorio];
+
+        return dificuldade_da_ilha;
     }
 
     /**
-     * Aqui fazemos um method overloading para poder criar a {@link Ilha} da seguinte forma: <br>
-     * 1. Damos uma {@link Dificuldade} aleatoria a Ilha. <br>
-     * 2. Damos um nome baseado na dificuldade da Ilha, ou seja, um destes: {@link Ilha#NOMES_FACIL}, {@link Ilha#NOMES_MEDIO}, {@link Ilha#NOMES_DIFICIL}. <br>
-     * 3. Geramos uma posicao aleatoria e unica a ilha usando a funcao {@link Ilha#generatePosition}.
-     * @param occupiedPositions
-     * @param nomes_usados_por_dificuldade
-     */
-    public Ilha(Set<String> occupiedPositions, Map<Dificuldade, Set<String>> nomes_usados_por_dificuldade) {
-        // Randomly assign difficulty
-        this.dificuldade_da_ilha = Dificuldade.values()[RANDOM.nextInt(Dificuldade.values().length)];
-
-        // Assign a unique name based on difficulty
-        List<String> availableNames = switch (this.dificuldade_da_ilha) {
-            case FACIL -> NOMES_FACIL;
-            case MEDIO -> NOMES_MEDIO;
-            case DIFICIL -> NOMES_DIFICIL;
-        };
-
-        String chosenName;
-        do {
-            chosenName = availableNames.get(RANDOM.nextInt(availableNames.size()));
-        } while (nomes_usados_por_dificuldade.get(this.dificuldade_da_ilha).contains(chosenName));
-        nomes_usados_por_dificuldade.get(this.dificuldade_da_ilha).add(chosenName);
-        this.nome = chosenName;
-
-        // Generate unique position
-        String positionKey;
-        do {
-            int[] position = generatePosition(this.dificuldade_da_ilha);
-            this.pos_x = position[0];
-            this.pos_y = position[1];
-            positionKey = pos_x + "," + pos_y;
-        } while (occupiedPositions.contains(positionKey));
-        occupiedPositions.add(positionKey);
-    }
-
-    /**
-     * Funcao que gera as posicoes aleatorias de uma {@link Ilha} apartir da sua dificuldade. <br>
-     * Tambem faz que a Ilha tenha uma determinada posicao dependendo da sua dificuldade.
+     * Funcao que gera as posicoes <i>x</i> e <i>y</i> de uma {@link Ilha}. <br>
+     * Tambem faz que a Ilha tenha uma determinada posicao dependendo da sua dificuldade. <br>
+     * A Ilha começa a aparecer depois da coordenada 1x1, ou seja, x=1 e y=1. <br>
      * @param dificuldade
      * @return as posicoes X e Y
      */
-    private int[] generatePosition(Dificuldade dificuldade) {
+    public static Coordenada gerarCoordenadas(Dificuldade dificuldade) {
+        final Random RANDOM = new Random();
         int x = 0, y = 0;
+
+        /// Cada dificuldade pode gerar 9 Ilhas (NxN), entao podemos ter um total de 27 ilhas.
         switch (dificuldade) {
             /// Vai gerar posicoes de 2 a 4
             case FACIL -> {
@@ -110,32 +83,78 @@ public class Ilha {
                 y = 8 + RANDOM.nextInt(3);
             }
         }
-        return new int[]{x, y};
+        return new Coordenada(x, y);
     }
 
     /**
-     * Vai criar uma lista de N {@link Ilha}s, e para isso vai seguir os seguintes passos: <br>
-     * 1. Verificar se o numero de ilhas a serem criadas e maior que os nomes existentes, e se caso forem atira uma excecao. <br>
-     * 2. Vai criar as ilhas unicas
-     * @param n o numero de ilhas a serem criadas
-     * @return
+     * @param quantidade_ilhas o numero de ilhas a serem criadas
+     * @return um Array de {@link Ilha}s
      */
-    public static List<Ilha> criarIlhas(int n) {
-        if (n > (NOMES_FACIL.size() + NOMES_MEDIO.size() + NOMES_DIFICIL.size())) {
-            throw new IllegalArgumentException("Cannot create more islands than the available unique names.");
+    public static Ilha[] criarIlhas(int quantidade_ilhas) throws Exception {
+        String[] NOMES_PARA_AS_ILHAS = {"Ilha do GPT", "Piaget", "Ilha do W3","Setubal", "Reddit", "Ponto Medio","Amadora", "Africa", "4chan"};
+
+        if (quantidade_ilhas > 27) {
+            throw new Exception("Nao existe espaço para essas ilhas todas.");
+        } else if (quantidade_ilhas > NOMES_PARA_AS_ILHAS.length) {
+            throw new Exception("Nao podes criar mais ilhas que os nomes que existem.");
         }
 
-        List<Ilha> islands = new ArrayList<>();
-        Set<String> occupiedPositions = new HashSet<>();
-        Map<Dificuldade, Set<String>> usedNamesByDifficulty = new HashMap<>();
-        usedNamesByDifficulty.put(Dificuldade.FACIL, new HashSet<>());
-        usedNamesByDifficulty.put(Dificuldade.MEDIO, new HashSet<>());
-        usedNamesByDifficulty.put(Dificuldade.DIFICIL, new HashSet<>());
+        Ilha[] ilhas = new Ilha[quantidade_ilhas];
 
-        for (int i = 0; i < n; i++) {
-            islands.add(new Ilha(occupiedPositions, usedNamesByDifficulty));
+        /// Estas variaveis servem para contar se existe ilhas de X dificuldade disponiveis
+        int ilhasFaceisDisponiveis = 9;
+        int ilhasMediasDisponiveis = 9;
+        int ilhasDificeisDisponiveis = 9;
+
+        /// E a lista de coordenadas UNICAS
+        Set<Coordenada> lista_de_coordenadas = new HashSet<>();
+
+        for (int i = 0; i < quantidade_ilhas; i++) {
+            /*
+                Primeiro geramos uma dificuldade.
+                Depois verificamos se essa ilha pode ter essa dificuldade ja que o maximo e 9.
+                Se nao poder ter essa dificuldade, vai gerar uma nova dificuldade ate dar.
+             */
+            Dificuldade dificuldade_da_ilha = gerarDificuldade();
+
+            while ((dificuldade_da_ilha == Dificuldade.FACIL && ilhasFaceisDisponiveis == 0) ||
+                    (dificuldade_da_ilha == Dificuldade.MEDIO && ilhasMediasDisponiveis == 0) ||
+                    (dificuldade_da_ilha == Dificuldade.DIFICIL && ilhasDificeisDisponiveis == 0)) {
+                dificuldade_da_ilha = gerarDificuldade();
+            }
+
+            if (dificuldade_da_ilha == Dificuldade.FACIL) {
+                ilhasFaceisDisponiveis -= 1;
+            } else if (dificuldade_da_ilha == Dificuldade.MEDIO) {
+                ilhasMediasDisponiveis -= 1;
+            } else {
+                ilhasDificeisDisponiveis -= 1;
+            }
+
+            /*
+                Aqui nos geramos as coordenadas para a Ilha, ou seja,
+                criamos uma lista de coordenadas, para saber quais coordenadas estao em uso,
+                depois se uma dessas coordenadas estiver em uso, vai voltar a gerar a coordenada ate dar
+             */
+            Coordenada coordenadas_da_ilha = gerarCoordenadas(dificuldade_da_ilha);
+
+            while (lista_de_coordenadas.contains(coordenadas_da_ilha)) {
+                coordenadas_da_ilha = gerarCoordenadas(dificuldade_da_ilha);
+            }
+
+            lista_de_coordenadas.add(coordenadas_da_ilha);
+
+            Random random = new Random();
+            String nome_da_ilha = NOMES_PARA_AS_ILHAS[random.nextInt(NOMES_PARA_AS_ILHAS.length)];
+
+            ilhas[i] = new Ilha(
+                   nome_da_ilha,
+                   dificuldade_da_ilha,
+                   coordenadas_da_ilha
+            );
         }
-        return islands;
+
+        return ilhas;
     }
 
     public String getNome() {
@@ -146,22 +165,6 @@ public class Ilha {
         this.nome = nome;
     }
 
-    public int getPos_x() {
-        return pos_x;
-    }
-
-    public void setPos_x(int pos_x) {
-        this.pos_x = pos_x;
-    }
-
-    public int getPos_y() {
-        return pos_y;
-    }
-
-    public void setPos_y(int pos_y) {
-        this.pos_y = pos_y;
-    }
-
     public Dificuldade getDificuldade_da_ilha() {
         return dificuldade_da_ilha;
     }
@@ -170,26 +173,11 @@ public class Ilha {
         this.dificuldade_da_ilha = dificuldade_da_ilha;
     }
 
-    /**
-     * @param quantidade_ilhas e a quantidade de ilhas que queremos criar
-     * @return retorna um Array de {@link Ilha}
-     */
-    public Ilha[] criar_ilhas(int quantidade_ilhas) {
-        Ilha[] ilhas = new Ilha[quantidade_ilhas];
-
-        return ilhas;
+    public Coordenada getCoordenadas() {
+        return coordenadas;
     }
-}
 
-/**
- * Serve para medir qual a dificuldade da ilha, por exemplo: <br>
- * uma ilha com dificuldade <i>FACIL</i> vai gastar menos recursos que uma ilha com dificuldade <i>DIFICIL</i>
- */
-enum Dificuldade {
-    /// E uma {@link Ilha} de dificuldade dificil
-    DIFICIL,
-    /// E uma {@link Ilha} de dificuldade mediana
-    MEDIO,
-    /// E uma {@link Ilha} de dificuldade facil
-    FACIL
+    public void setCoordenadas(Coordenada coordenadas) {
+        this.coordenadas = coordenadas;
+    }
 }
