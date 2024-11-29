@@ -33,6 +33,15 @@ public class Jogo {
 
     /// Esta e a funcao que vai iniciar o Jogo
     public void iniciar() {
-        System.out.println("Epic gamer move");
+        Mapa mapinha = getMapa();
+
+        boolean fimDeJogo = false;
+        while (!fimDeJogo) {
+            mapinha.atualizarMapa();
+            mapinha.mostrar();
+
+            int direcao = jogador.escolher_direcao();
+            mapinha.moverBarco(direcao);
+        }
     }
 }
