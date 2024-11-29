@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Esta e a classe que implementa toda a logica do Jogador.
  * <br> <br>
@@ -43,5 +45,23 @@ public class Jogador {
 
     public void setMissao_atual(Missao missao_atual) {
         this.missao_atual = missao_atual;
+    }
+
+    public int escolher_direcao() {
+        Scanner input = new Scanner(System.in);
+        int opcao = 0;
+
+        while (opcao < 1 || opcao > 4) {
+            System.out.println("Escolha uma direcao");
+            System.out.println("1 - cima");
+            System.out.println("2 - baixo");
+            System.out.println("3 - esquerda");
+            System.out.println("4 - direita");
+            opcao = input.nextInt();
+            System.out.println(opcao);
+        }
+
+        //input.close();
+        return opcao;
     }
 }

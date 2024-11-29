@@ -55,14 +55,64 @@ public class Mapa {
      * com as coordenadas das {@link Ilha}s e do {@link Jogador}
       */
     public void atualizarMapa() {
+        // Atualizar o Mapa
         this.mapa = new int[10][10];
+
+        // Atualizar o Barco
+        int pos_x = this.barco.getPos_x();
+        int pos_y = this.barco.getPos_y();
+        this.mapa[pos_x][pos_y] = 5;
+
+        // Atualizar a Ilha
     }
+
+    /// Esta funcao serve para mover o {@link Barco} dentro do {@link Mapa}
+    public void moverBarco(int direcao) {
+        int barco_pos_x = this.barco.getPos_x();
+        int barco_pos_y = this.barco.getPos_y();
+
+        switch (direcao) {
+            case 1:
+                if (barco_pos_x == 0) {
+                    //System.out.println("O jogador nao pode ir para essa direçao");
+                    break;
+                }
+                this.barco.setPos_x(barco_pos_x - 1);
+                break;
+            case 2:
+                if (barco_pos_x == 9) {
+                    //System.out.println("O jogador nao pode ir para essa direçao");
+                    break;
+                }
+                this.barco.setPos_x(barco_pos_x + 1);
+                break;
+            case 3:
+                if (barco_pos_y == 0) {
+                    //System.out.println("O jogador nao pode ir para essa direçao");
+                    break;
+                }
+                this.barco.setPos_y(barco_pos_y - 1);
+                break;
+            case 4:
+                if (barco_pos_y == 9) {
+                    //System.out.println("O jogador nao pode ir para essa direçao");
+                    break;
+                }
+                this.barco.setPos_y(barco_pos_y + 1);
+                break;
+            default:
+                System.out.println("O jogador nao pode ir para essa direçao");
+        }    }
 
     /// Esta funçao mostra o mapa na consola
     public void mostrar() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                System.out.print(this.mapa[i][j] + " ");
+                if (this.mapa[i][j] == 5) {
+                   System.out.print("\uD83D\uDEE5" + " ");
+                } else {
+                    System.out.print(this.mapa[i][j] + " ");
+                }
             }
             System.out.println();
         }
