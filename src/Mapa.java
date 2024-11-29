@@ -109,9 +109,9 @@ public class Mapa {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (this.mapa[i][j] == 5) {
-                   System.out.print("\uD83D\uDEE5" + " ");
+                    System.out.print("\uD83D\uDEE5" + "  ");
                 } else {
-                    System.out.print(this.mapa[i][j] + " ");
+                    System.out.print("\uD83C\uDF0A" + " ");
                 }
             }
             System.out.println();
