@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class JogoGUI extends JFrame {
 
-    public JogoGUI(Missao missao) {
+    public JogoGUI(Missao missao, Barco barco) {
         // Configurações da janela
         setTitle("Interface de Missão");
         setSize(800, 600);
@@ -62,7 +62,16 @@ public class JogoGUI extends JFrame {
         leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10)); // Alinha ao canto esquerdo
 
         // Criação de um JLabel para exibir as informações
-        JLabel infoLabel = new JLabel("<html>Energia: 100<br>Peixe: 50<br>Morale: 80<br>Vida da Tripulação: 100</html>");
+        int peixe =  barco.getRecursos().getPeixe();
+        int energia = barco.getRecursos().getEnergia();
+        int morale = barco.getRecursos().getMorale();
+        int vida_da_tripulacao = barco.getRecursos().getVida_da_tripulacao();
+        JLabel infoLabel = new JLabel(
+                "<html>Energia: " + energia +
+                        "<br>Peixe: " + peixe +
+                        "<br>Morale: " + morale +
+                        "<br>Vida da Tripulação: " + vida_da_tripulacao + "</html>"
+        );
         infoLabel.setFont(new Font("Serif", Font.PLAIN, 16)); // Ajusta a fonte
         infoLabel.setOpaque(true); // Torna o fundo visível
         infoLabel.setBackground(Color.WHITE); // Define o fundo branco
@@ -81,8 +90,14 @@ public class JogoGUI extends JFrame {
 
     public static void main(String[] args) {
         Missao missao = new Missao("olha para mim", "nada", null, null);
+
+        Jogador jogador = new Jogador("Antonio", -100, null);
+        Recursos recursos = new Recursos(0,0,0,0);
+        Barco barco = new Barco(jogador.getNome(), jogador.getPontuacao(), jogador.getMissao_atual(), 0,0, recursos);
+
+
         SwingUtilities.invokeLater(() -> {
-            new JogoGUI(missao); // Substitua por lógica de inicialização
+            new JogoGUI(missao, barco); // Substitua por lógica de inicialização
         });
     }
 
