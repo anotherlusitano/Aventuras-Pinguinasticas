@@ -64,6 +64,11 @@ public class Mapa {
         this.mapa[pos_x][pos_y] = 5;
 
         // Atualizar a Ilha
+        for (Ilha ilha : this.ilhas) {
+            int x = ilha.getCoordenadas().getX();
+            int y = ilha.getCoordenadas().getY();
+            this.mapa[x][y] = 1;
+        }
     }
 
     /// Esta funcao serve para mover o {@link Barco} dentro do {@link Mapa}
@@ -110,6 +115,8 @@ public class Mapa {
             for (int j = 0; j < 10; j++) {
                 if (this.mapa[i][j] == 5) {
                     System.out.print("\uD83D\uDEE5" + "  ");
+                } else if (this.mapa[i][j] == 1) {
+                    System.out.print("\uD83C\uDFDD" + "  ");
                 } else {
                     System.out.print("\uD83C\uDF0A" + " ");
                 }

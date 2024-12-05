@@ -79,8 +79,8 @@ public class Ilha {
             }
             /// Vai gerar posicoes de 8 a 10
             case DIFICIL -> {
-                x = 8 + RANDOM.nextInt(3);
-                y = 8 + RANDOM.nextInt(3);
+                x = 8 + RANDOM.nextInt(2);
+                y = 8 + RANDOM.nextInt(2);
             }
         }
         return new Coordenada(x, y);
