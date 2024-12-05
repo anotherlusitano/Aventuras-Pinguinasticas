@@ -39,12 +39,16 @@ public class Ilha {
     /** Determina se a {@link Ilha} foi visitada */
     private boolean visitada;
 
+    /** E a {@link Missao} da {@link Ilha} */
+    private Missao missao;
+
     /// Construtor inicial da Ilha
-    public Ilha(String nome, Dificuldade dificuldadeDaIlha, Coordenada coordenadas, boolean visitada) {
+    public Ilha(String nome, Dificuldade dificuldadeDaIlha, Coordenada coordenadas, boolean visitada, Missao missao) {
         this.nome = nome;
         this.dificuldade_da_ilha = dificuldadeDaIlha;
         this.coordenadas = coordenadas;
         this.visitada = visitada;
+        this.missao = missao;
     }
 
     public static Dificuldade gerarDificuldade() {
@@ -150,12 +154,16 @@ public class Ilha {
 
             Random random = new Random();
             String nome_da_ilha = NOMES_PARA_AS_ILHAS[random.nextInt(NOMES_PARA_AS_ILHAS.length)];
+            String nome_da_missao = "Missao de " + nome_da_ilha;
+
+            Missao missao = new Missao(nome_da_missao, dificuldade_da_ilha);
 
             ilhas[i] = new Ilha(
                    nome_da_ilha,
                    dificuldade_da_ilha,
                    coordenadas_da_ilha,
-                    false
+                    false,
+                    missao
             );
         }
 
@@ -192,5 +200,13 @@ public class Ilha {
 
     public void setVisitada(boolean visitada) {
         this.visitada = visitada;
+    }
+
+    public Missao getMissao() {
+        return missao;
+    }
+
+    public void setMissao(Missao missao) {
+        this.missao = missao;
     }
 }
