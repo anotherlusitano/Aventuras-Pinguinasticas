@@ -36,11 +36,15 @@ public class Ilha {
     /** E as {@link Coordenada} da {@link Ilha} */
     private Coordenada coordenadas;
 
+    /** Determina se a {@link Ilha} foi visitada */
+    private boolean visitada;
+
     /// Construtor inicial da Ilha
-    public Ilha(String nome, Dificuldade dificuldadeDaIlha, Coordenada coordenadas) {
+    public Ilha(String nome, Dificuldade dificuldadeDaIlha, Coordenada coordenadas, boolean visitada) {
         this.nome = nome;
         this.dificuldade_da_ilha = dificuldadeDaIlha;
         this.coordenadas = coordenadas;
+        this.visitada = visitada;
     }
 
     public static Dificuldade gerarDificuldade() {
@@ -150,7 +154,8 @@ public class Ilha {
             ilhas[i] = new Ilha(
                    nome_da_ilha,
                    dificuldade_da_ilha,
-                   coordenadas_da_ilha
+                   coordenadas_da_ilha,
+                    false
             );
         }
 
@@ -179,5 +184,13 @@ public class Ilha {
 
     public void setCoordenadas(Coordenada coordenadas) {
         this.coordenadas = coordenadas;
+    }
+
+    public boolean getVisitada() {
+        return visitada;
+    }
+
+    public void setVisitada(boolean visitada) {
+        this.visitada = visitada;
     }
 }
