@@ -32,9 +32,13 @@ public class JogoGUI extends JFrame {
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
         // Criação dos botões
-        JButton option1 = new JButton("Opção 1");
-        JButton option2 = new JButton("Opção 2");
-        JButton option3 = new JButton("Opção 3");
+        String opcao1_texto = missao.getOpcoes().get(0).getTexto();
+        String opcao2_texto = missao.getOpcoes().get(1).getTexto();
+        String opcao3_texto = missao.getOpcoes().get(2).getTexto();
+
+        JButton option1 = new JButton(opcao1_texto);
+        JButton option2 = new JButton(opcao2_texto);
+        JButton option3 = new JButton(opcao3_texto);
 
         // Estilo dos botões
         JButton[] buttons = {option1, option2, option3};
@@ -42,7 +46,6 @@ public class JogoGUI extends JFrame {
             button.setBackground(Color.BLACK);
             button.setForeground(Color.WHITE);
             button.setFocusPainted(false);
-            button.setPreferredSize(new Dimension(100, 50));
             button.setFont(new Font("Serif", Font.PLAIN, 18));
             buttonPanel.add(button);
         }
@@ -89,7 +92,7 @@ public class JogoGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        Missao missao = new Missao("olha para mim", "nada", null, null);
+        Missao missao = new Missao("olha para mim", Dificuldade.DIFICIL);
 
         Jogador jogador = new Jogador("Antonio", -100, null);
         Recursos recursos = new Recursos(0,0,0,0);
