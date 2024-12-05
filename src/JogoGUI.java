@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class JogoGUI extends JFrame {
 
-    public JogoGUI() {
+    public JogoGUI(Missao missao) {
         // Configurações da janela
         setTitle("Interface de Missão");
         setSize(800, 600);
@@ -20,7 +20,8 @@ public class JogoGUI extends JFrame {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS)); // Empilha componentes verticalmente
 
         // Adiciona título no topo
-        JLabel titleLabel = new JLabel("NOME DA MISSÃO", SwingConstants.CENTER);
+        String nome = missao.getNome();
+        JLabel titleLabel = new JLabel(nome, SwingConstants.CENTER);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 24));
         titleLabel.setForeground(Color.BLACK); // Define a cor do título para preto
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Centraliza o título
@@ -79,8 +80,12 @@ public class JogoGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(JogoGUI::new);
+        Missao missao = new Missao("olha para mim", "nada", null, null);
+        SwingUtilities.invokeLater(() -> {
+            new JogoGUI(missao); // Substitua por lógica de inicialização
+        });
     }
+
 
     // Classe personalizada para desenhar a imagem de fundo
     class BackgroundPanel extends JPanel {
