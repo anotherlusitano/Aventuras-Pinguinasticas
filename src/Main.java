@@ -11,7 +11,7 @@ public class Main {
 
         Jogador jogador = new Jogador("Antonio", -100, null);
 
-        Recursos recursos = new Recursos(0,0,0,0);
+        Recursos recursos = new Recursos(100,100,100,100);
 
         Barco barco = new Barco(jogador.getNome(), jogador.getPontuacao(), jogador.getMissao_atual(), recursos);
 
