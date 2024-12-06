@@ -142,4 +142,21 @@ public class Mapa {
 
         return null;
     }
+
+    /// O nome indica tudo, nao tenho mais nada a declarar.
+    public boolean verificarSeTodasAsIlhasForamVisitadas() {
+        int numeroIlhasVisitadas = 0;
+
+        for (Ilha ilha : this.ilhas) {
+            if (ilha.getVisitada()) {
+                numeroIlhasVisitadas++;
+            }
+        }
+
+        if (numeroIlhasVisitadas == this.ilhas.length) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
