@@ -31,23 +31,19 @@ public class JogoGUI extends JFrame {
         buttonPanel.setOpaque(false); // Fundo transparente
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
-        // Criação dos botões
-        String opcao1_texto = missao.getOpcoes().get(0).getTexto();
-        String opcao2_texto = missao.getOpcoes().get(1).getTexto();
-        String opcao3_texto = missao.getOpcoes().get(2).getTexto();
+        // Criação e estilo dos botões
+        for (int i = 0; i < 3; i++) {
+            Opcao opcao = missao.getOpcoes().get(i);
+            String opcao_texto = opcao.getTexto();
+            String opcao_recursos = opcao.toString();
 
-        JButton option1 = new JButton(opcao1_texto);
-        JButton option2 = new JButton(opcao2_texto);
-        JButton option3 = new JButton(opcao3_texto);
-
-        // Estilo dos botões
-        JButton[] buttons = {option1, option2, option3};
-        for (JButton button : buttons) {
-            button.setBackground(Color.BLACK);
-            button.setForeground(Color.WHITE);
-            button.setFocusPainted(false);
-            button.setFont(new Font("Serif", Font.PLAIN, 18));
-            buttonPanel.add(button);
+            JButton botao = new JButton(opcao_texto);
+            botao.setBackground(Color.BLACK);
+            botao.setForeground(Color.WHITE);
+            botao.setFocusPainted(false);
+            botao.setFont(new Font("Serif", Font.PLAIN, 18));
+            botao.setToolTipText(opcao_recursos);
+            buttonPanel.add(botao);
         }
 
         // Adiciona o título e os botões ao painel superior
