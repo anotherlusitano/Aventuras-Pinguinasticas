@@ -59,6 +59,18 @@ public class Jogo {
                     break;
                 }
             }
+
+            fimDeJogo = verificarFimDeJogo();
         }
+
+        GameOver.inicializarGameOver();
+    }
+
+    /// Verifica se o {@link Barco} nao tem recursos, e se nao tiver, vai acabar o Jogo
+    private boolean verificarFimDeJogo() {
+        Mapa mapa = getMapa();
+        Barco barco = mapa.getBarco();
+
+        return !barco.temRecursos();
     }
 }
