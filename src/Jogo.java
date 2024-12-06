@@ -54,7 +54,7 @@ public class Jogo {
 
                 if (mapinha.verificarSeTodasAsIlhasForamVisitadas()) {
                     System.out.println("Muitos parabens " + jogador.getNome() + "!");
-                    System.out.println("Conseguiste navegar pelos 7 mares e acomular uma pontuaçao de " + jogador.getPontuacao() + " pontos!");
+                    System.out.println("Conseguiste navegar pelos 7 mares e acumular uma pontuaçao de " + jogador.getPontuacao() + " pontos!");
                     System.out.println("Por agora, o jogo acabou. Mas esperamos ver te novamente!");
                     break;
                 }
