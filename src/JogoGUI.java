@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class JogoGUI extends JFrame {
 
@@ -43,6 +45,15 @@ public class JogoGUI extends JFrame {
             botao.setFocusPainted(false);
             botao.setFont(new Font("Serif", Font.PLAIN, 18));
             botao.setToolTipText(opcao_recursos);
+
+            botao.addActionListener(new ActionListener() {
+                public void actionPerformed (ActionEvent e) {
+                    barco.getRecursos().subtrair(opcao.getCusto());
+                    barco.getRecursos().somar(opcao.getGanho());
+                    dispose();
+                }
+            });
+
             buttonPanel.add(botao);
         }
 
