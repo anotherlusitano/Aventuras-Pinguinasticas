@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
 
 public class JogoGUI extends JFrame {
 
@@ -99,9 +100,14 @@ public class JogoGUI extends JFrame {
     }
 
     public static void inicializarInterface(Missao missao, Barco barco) {
-        SwingUtilities.invokeLater(() -> {
-            new JogoGUI(missao, barco); // Substitua por lógica de inicialização
-        });
+        try {
+            // Usamos o invokeAndWait para so avançar no ciclo quando invocar a interface
+            SwingUtilities.invokeAndWait(() -> {
+                new JogoGUI(missao, barco);
+            });
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
