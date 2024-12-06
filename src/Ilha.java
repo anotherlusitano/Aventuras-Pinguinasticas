@@ -24,7 +24,10 @@ enum Dificuldade {
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
  * {@link Ilha#nome} - e o nome da Ilha <br>
- * {@link Ilha#dificuldade_da_ilha} - e o {@link Dificuldade} da Ilha
+ * {@link Ilha#dificuldade_da_ilha} - e o {@link Dificuldade} da Ilha <br>
+ * {@link Ilha#coordenadas} - e as {@link Coordenada}s da Ilha <br>
+ * {@link Ilha#visitada} - verifica se a Ilha ja foi visitada pelo {@link Barco} <br>
+ * {@link Ilha#visitada} - E a {@link Missao} da Ilha
  */
 public class Ilha {
     /** E o nome da {@link Ilha} */
