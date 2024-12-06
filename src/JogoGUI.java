@@ -92,7 +92,7 @@ public class JogoGUI extends JFrame {
 
         Jogador jogador = new Jogador("Antonio", -100, null);
         Recursos recursos = new Recursos(0,0,0,0);
-        Barco barco = new Barco(jogador.getNome(), jogador.getPontuacao(), jogador.getMissao_atual(), 0,0, recursos);
+        Barco barco = new Barco(jogador.getNome(), jogador.getPontuacao(), jogador.getMissao_atual(), recursos);
 
 
         SwingUtilities.invokeLater(() -> {

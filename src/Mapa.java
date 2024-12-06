@@ -59,8 +59,8 @@ public class Mapa {
         this.mapa = new int[10][10];
 
         // Atualizar o Barco
-        int pos_x = this.barco.getPos_x();
-        int pos_y = this.barco.getPos_y();
+        int pos_x = this.barco.getCoordenadas().getX();
+        int pos_y = this.barco.getCoordenadas().getY();
         this.mapa[pos_x][pos_y] = 5;
 
         // Atualizar a Ilha
@@ -73,8 +73,8 @@ public class Mapa {
 
     /// Esta funcao serve para mover o {@link Barco} dentro do {@link Mapa}
     public void moverBarco(int direcao) {
-        int barco_pos_x = this.barco.getPos_x();
-        int barco_pos_y = this.barco.getPos_y();
+        int barco_pos_x = this.barco.getCoordenadas().getX();
+        int barco_pos_y = this.barco.getCoordenadas().getY();
 
         switch (direcao) {
             case 1:
@@ -82,28 +82,28 @@ public class Mapa {
                     //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
-                this.barco.setPos_x(barco_pos_x - 1);
+                this.barco.getCoordenadas().setX(barco_pos_x - 1);
                 break;
             case 2:
                 if (barco_pos_x == 9) {
                     //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
-                this.barco.setPos_x(barco_pos_x + 1);
+                this.barco.getCoordenadas().setX(barco_pos_x + 1);
                 break;
             case 3:
                 if (barco_pos_y == 0) {
                     //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
-                this.barco.setPos_y(barco_pos_y - 1);
+                this.barco.getCoordenadas().setY(barco_pos_y - 1);
                 break;
             case 4:
                 if (barco_pos_y == 9) {
                     //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
-                this.barco.setPos_y(barco_pos_y + 1);
+                this.barco.getCoordenadas().setY(barco_pos_y + 1);
                 break;
             default:
                 System.out.println("O jogador nao pode ir para essa direçao");
@@ -125,4 +125,21 @@ public class Mapa {
         }
     }
 
+    /**
+        Serve para verificar se o {@link Barco} esta na mesma posicao que a {@link Ilha}. <br>
+        Primeiro verifica se o {@link Barco} esta na mesma posicao da {@link Ilha}; <br>
+        Depois verifica se essa Ilha foi visitada, e caso nao seja, vai retornar a Ilha. <br>
+        Caso o Barco nao esteja na Ilha, vai retornar null.
+    */
+    public Ilha verificarChegouNaIlha() {
+        for (Ilha ilha : this.ilhas) {
+            boolean barcoEstaNaIlha = ilha.getCoordenadas().equals(this.barco.getCoordenadas());
+            if (barcoEstaNaIlha && !ilha.getVisitada()) {
+                ilha.setVisitada(true);
+                return ilha;
+            }
+        }
+
+        return null;
+    }
 }
