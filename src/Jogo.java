@@ -63,7 +63,9 @@ public class Jogo {
             fimDeJogo = verificarFimDeJogo();
         }
 
-        GameOver.inicializarGameOver();
+        if (fimDeJogo) {
+            GameOver.inicializarGameOver();
+        }
     }
 
     /// Verifica se o {@link Barco} nao tem recursos, e se nao tiver, vai acabar o Jogo
