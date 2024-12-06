@@ -8,11 +8,11 @@ public class Main {
             System.exit(1);
         }
 
-        Jogador jogador = new Jogador("Antonio", -100, null);
+        Jogador jogador = new Jogador("Antonio", -100);
 
         Recursos recursos = new Recursos(100,100,100,100);
 
-        Barco barco = new Barco(jogador.getNome(), jogador.getPontuacao(), jogador.getMissao_atual(), recursos);
+        Barco barco = new Barco(jogador.getNome(), jogador.getPontuacao(), recursos);
 
         Mapa mapa = new Mapa(barco, ilhas);
 

@@ -11,7 +11,6 @@ import java.util.Scanner;
  * Esta classe implementa os seguintes atributos: <br>
  * {@link Jogador#nome} - e o nome do Jogador <br>
  * {@link Jogador#pontuacao} - e a pontuacao final do Jogador <br>
- * {@link Jogador#missao_atual} - e a {@link Missao} que o Jogador esta a fazer no momento
  */
 public class Jogador {
     /** E o nome do Jogador */
@@ -20,10 +19,7 @@ public class Jogador {
     /** E a pontuacao do Jogador que vai ser armazenada em um ficheiro*/
     protected int pontuacao;
 
-    /** E a {@link Missao} que o Jogador esta a fazer */
-    protected Missao missao_atual;
-
-    public Jogador(String nome, int pontuacao, Missao missaoAtual) {
+    public Jogador(String nome, int pontuacao) {
         this.nome = nome;
 
         File ficheiro = new File("pontuacao.txt");
@@ -67,9 +63,6 @@ public class Jogador {
             System.err.println("Erro ao inicializar a pontuação: " + e.getMessage());
             this.pontuacao = pontuacao; // Valor padrão em caso de erro
         }
-
-
-        this.missao_atual = missaoAtual;
     }
 
     public String getNome() {
@@ -114,14 +107,6 @@ public class Jogador {
         } catch (IOException e) {
             System.err.println("Erro ao salvar a pontuação: " + e.getMessage());
         }
-    }
-
-    public Missao getMissao_atual() {
-        return missao_atual;
-    }
-
-    public void setMissao_atual(Missao missao_atual) {
-        this.missao_atual = missao_atual;
     }
 
     public int escolher_direcao() {
