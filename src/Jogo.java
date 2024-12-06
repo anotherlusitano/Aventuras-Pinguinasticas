@@ -42,6 +42,16 @@ public class Jogo {
 
             int direcao = jogador.escolher_direcao();
             mapinha.moverBarco(direcao);
+
+            Ilha ilhaOndeEstaOBarco = mapinha.verificarChegouNaIlha();
+
+            if (ilhaOndeEstaOBarco != null) {
+                Missao missaoDaIlha = ilhaOndeEstaOBarco.getMissao();
+
+                // vai mostrar a interface com a Missao
+                // e apartir dai vai remover ou adicionar recursos ao Barco do Jogador
+                JogoGUI.inicializarInterface(missaoDaIlha, mapinha.getBarco());
+            }
         }
     }
 }
