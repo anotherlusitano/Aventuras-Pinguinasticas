@@ -39,7 +39,7 @@ public class GameOver extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void inicializarGameOver() {
         SwingUtilities.invokeLater(GameOver::new);
     }
 

@@ -47,4 +47,21 @@ public class Barco extends Jogador {
     public void setCoordenadas(Coordenada coordenadas) {
         this.coordenadas = coordenadas;
     }
+
+    /// Se algum dos {@link Recursos} estiver a zero ou menos, vai retornar falso
+    public boolean temRecursos() {
+        Recursos recursos = this.getRecursos();
+
+        if (recursos.getEnergia() <= 0) {
+            return false;
+        } else if (recursos.getPeixe() <= 0) {
+            return false;
+        } else if (recursos.getMorale() <= 0) {
+            return false;
+        } else if (recursos.getVida_da_tripulacao() <= 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

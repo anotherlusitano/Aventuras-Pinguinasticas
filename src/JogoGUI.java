@@ -101,10 +101,16 @@ public class JogoGUI extends JFrame {
 
     public static void inicializarInterface(Missao missao, Barco barco) {
         try {
+            // Criamos a Interface para depois deixa-la visivel
+            JogoGUI gui = new JogoGUI(missao, barco);
+
             // Usamos o invokeAndWait para so avançar no ciclo quando invocar a interface
-            SwingUtilities.invokeAndWait(() -> {
-                new JogoGUI(missao, barco);
-            });
+            SwingUtilities.invokeAndWait(() -> gui.setVisible(true));
+
+            // Vamos esperar ate a Interface seja fechada para poder avançar
+            while (gui.isDisplayable()) {
+                Thread.sleep(100);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
