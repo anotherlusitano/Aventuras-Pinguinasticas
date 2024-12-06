@@ -87,14 +87,7 @@ public class JogoGUI extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
-        Missao missao = new Missao("olha para mim", Dificuldade.DIFICIL);
-
-        Jogador jogador = new Jogador("Antonio", -100, null);
-        Recursos recursos = new Recursos(0,0,0,0);
-        Barco barco = new Barco(jogador.getNome(), jogador.getPontuacao(), jogador.getMissao_atual(), recursos);
-
-
+    public static void inicializarInterface(Missao missao, Barco barco) {
         SwingUtilities.invokeLater(() -> {
             new JogoGUI(missao, barco); // Substitua por lógica de inicialização
         });
