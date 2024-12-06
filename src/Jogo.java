@@ -51,6 +51,13 @@ public class Jogo {
                 // vai mostrar a interface com a Missao
                 // e apartir dai vai remover ou adicionar recursos ao Barco do Jogador
                 JogoGUI.inicializarInterface(missaoDaIlha, mapinha.getBarco());
+
+                if (mapinha.verificarSeTodasAsIlhasForamVisitadas()) {
+                    System.out.println("Muitos parabens " + jogador.getNome() + "!");
+                    System.out.println("Conseguiste navegar pelos 7 mares e acomular uma pontuaçao de " + jogador.getPontuacao() + " pontos!");
+                    System.out.println("Por agora, o jogo acabou. Mas esperamos ver te novamente!");
+                    break;
+                }
             }
         }
     }
