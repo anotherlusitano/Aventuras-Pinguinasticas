@@ -40,6 +40,8 @@ public class Jogo {
             mapinha.atualizarMapa();
             mapinha.mostrar();
 
+            Coordenada posicaoAntigaDoBarco = mapinha.getBarco().getCoordenadas();
+
             int opcao = jogador.escolherOqueFazer();
             executarOpcaoMenu(opcao);
 
@@ -64,9 +66,13 @@ public class Jogo {
                 }
             }
 
-            // Vai gastar 5 de energia cada vez que se mexer
-            int energia_atual = mapinha.getBarco().getRecursos().getEnergia();
-            mapinha.getBarco().getRecursos().setEnergia(energia_atual-5);
+            Coordenada posicaoAtualDoBarco = mapinha.getBarco().getCoordenadas();
+
+            // Vai gastar 5 de energia cada vez que o Barco se mexer para uma nova posiçao
+            if (posicaoAntigaDoBarco.equals(posicaoAtualDoBarco)) {
+                int energia_atual = mapinha.getBarco().getRecursos().getEnergia();
+                mapinha.getBarco().getRecursos().setEnergia(energia_atual-5);
+            }
 
             fimDeJogo = verificarFimDeJogo();
         }
