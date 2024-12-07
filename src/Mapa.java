@@ -58,17 +58,17 @@ public class Mapa {
         // Atualizar o Mapa
         this.mapa = new int[10][10];
 
-        // Atualizar o Barco
-        int pos_x = this.barco.getCoordenadas().getX();
-        int pos_y = this.barco.getCoordenadas().getY();
-        this.mapa[pos_x][pos_y] = 5;
-
         // Atualizar a Ilha
         for (Ilha ilha : this.ilhas) {
             int x = ilha.getCoordenadas().getX();
             int y = ilha.getCoordenadas().getY();
             this.mapa[x][y] = 1;
         }
+
+        // Atualizar o Barco
+        int pos_x = this.barco.getCoordenadas().getX();
+        int pos_y = this.barco.getCoordenadas().getY();
+        this.mapa[pos_x][pos_y] = 5;
     }
 
     /// Esta funcao serve para mover o {@link Barco} dentro do {@link Mapa}
