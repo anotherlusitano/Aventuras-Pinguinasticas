@@ -88,14 +88,16 @@ public class Ilha {
      * @param quantidade_ilhas o numero de ilhas a serem criadas
      * @return um Array de {@link Ilha}s
      */
-    public static Ilha[] criarIlhas(int quantidade_ilhas) throws Exception {
-        String[] NOMES_PARA_AS_ILHAS = {"Ilha do GPT", "Piaget", "Ilha do W3","Setubal", "Reddit", "Ponto Medio","Amadora", "Africa", "4chan"};
-
-        if (quantidade_ilhas > 27) {
-            throw new Exception("Nao existe espaço para essas ilhas todas.");
-        } else if (quantidade_ilhas > NOMES_PARA_AS_ILHAS.length) {
-            throw new Exception("Nao podes criar mais ilhas que os nomes que existem.");
-        }
+    public static Ilha[] criarIlhas(int quantidade_ilhas) {
+        String[] NOMES_PARA_AS_ILHAS = {
+                "GPT", "Piaget", "Pirata","Setubal",
+                "Gelado", "Iceberg", "Dourada", "Projeto Europeu",
+                "Sardinha", "Bacalhau", "Madeirense", "Atlantica",
+                "Colorida", "Neve Azul", "dos Tubaroes", "das Raias",
+                "Congelada", "Inacreditavel", "Pena Branca","Foca",
+                "Perna de Pau", "da Rainha", "Perola Negra", "do Rei",
+                "Arenosa", "Caveira", "do Ovo"
+        };
 
         Ilha[] ilhas = new Ilha[quantidade_ilhas];
 
@@ -144,7 +146,7 @@ public class Ilha {
 
             Random random = new Random();
             String nome_da_ilha = NOMES_PARA_AS_ILHAS[random.nextInt(NOMES_PARA_AS_ILHAS.length)];
-            String nome_da_missao = "Missao de " + nome_da_ilha;
+            String nome_da_missao = "Missao " + nome_da_ilha;
 
             Missao missao = new Missao(nome_da_missao, dificuldade_da_ilha);
 
