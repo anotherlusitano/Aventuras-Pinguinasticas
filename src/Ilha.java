@@ -63,7 +63,7 @@ public class Ilha {
         final Random RANDOM = new Random();
         int x = 0, y = 0;
 
-        /// Cada dificuldade pode gerar 9 Ilhas (NxN), entao podemos ter um total de 27 ilhas.
+        /// Cada dificuldade pode gerar 9 Ilhas (NxN), entao podemos ter um total de 22 ilhas.
         switch (dificuldade) {
             /// Vai gerar posicoes de 2 a 4
             case FACIL -> {
@@ -75,7 +75,7 @@ public class Ilha {
                 x = 5 + RANDOM.nextInt(3);
                 y = 5 + RANDOM.nextInt(3);
             }
-            /// Vai gerar posicoes de 8 a 10
+            /// Vai gerar posicoes de 8 a 9
             case DIFICIL -> {
                 x = 8 + RANDOM.nextInt(2);
                 y = 8 + RANDOM.nextInt(2);
@@ -104,7 +104,7 @@ public class Ilha {
         /// Estas variaveis servem para contar se existe ilhas de X dificuldade disponiveis
         int ilhasFaceisDisponiveis = 9;
         int ilhasMediasDisponiveis = 9;
-        int ilhasDificeisDisponiveis = 9;
+        int ilhasDificeisDisponiveis = 4;
 
         /// E a lista de coordenadas UNICAS
         Set<Coordenada> lista_de_coordenadas = new HashSet<>();
