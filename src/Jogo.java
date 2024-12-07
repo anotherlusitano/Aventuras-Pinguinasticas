@@ -64,6 +64,10 @@ public class Jogo {
                 }
             }
 
+            // Vai gastar 5 de energia cada vez que se mexer
+            int energia_atual = mapinha.getBarco().getRecursos().getEnergia();
+            mapinha.getBarco().getRecursos().setEnergia(energia_atual-5);
+
             fimDeJogo = verificarFimDeJogo();
         }
 

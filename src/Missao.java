@@ -70,17 +70,17 @@ public class Missao {
         int recursos = 0;
 
         if (dificuldade == Dificuldade.FACIL) {
-            recursos = RANDOM.nextInt(21);
+            recursos = 1 + RANDOM.nextInt(15);
 
-            return new Recursos(recursos/2, recursos/2, 0, 0);
+            return new Recursos(recursos, recursos, 0, 0);
         } else if (dificuldade == Dificuldade.MEDIO) {
-            recursos = RANDOM.nextInt(41);
+            recursos = 20 + RANDOM.nextInt(16);
 
-            return new Recursos(recursos, recursos, recursos, recursos/2);
+            return new Recursos(recursos, recursos, recursos, recursos);
         } else {
-            recursos = RANDOM.nextInt(81);
+            recursos = 35 + RANDOM.nextInt(25);
 
-            return new Recursos((int) (recursos*1.05), (int) (recursos*1.05), (int) (recursos*1.05), (int) (recursos*0.7));
+            return new Recursos(recursos, recursos, recursos, (int) (recursos*1.2));
         }
     }
 
@@ -90,17 +90,17 @@ public class Missao {
         int recursos = 0;
 
         if (dificuldade == Dificuldade.FACIL) {
-            recursos = RANDOM.nextInt(81);
+            recursos = RANDOM.nextInt(16);
 
-            return new Recursos((int) (recursos*1.15), (int) (recursos*1.15), (int) (recursos*1.15), recursos);
+            return new Recursos(recursos, recursos, recursos, recursos);
         } else if (dificuldade == Dificuldade.MEDIO) {
-            recursos = RANDOM.nextInt(41);
+            recursos = 10 + RANDOM.nextInt(10);
 
-            return new Recursos(recursos, recursos, recursos, recursos/2);
+            return new Recursos(recursos, recursos, recursos, recursos);
         } else {
-            recursos = RANDOM.nextInt(21);
+            recursos = 10 + RANDOM.nextInt(35);
 
-            return new Recursos(recursos/2, recursos/2, recursos/2, recursos/2);
+            return new Recursos(recursos, recursos, recursos, recursos);
         }
     }
 
