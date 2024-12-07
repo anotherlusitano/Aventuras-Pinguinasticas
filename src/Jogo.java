@@ -31,7 +31,7 @@ public class Jogo {
         this.mapa = mapa;
     }
 
-    /// Esta e a funcao que vai iniciar o Jogo
+    /// Esta e a funcao que vai iniciar o Jogo. <br>
     public void iniciar() {
         Mapa mapinha = getMapa();
 

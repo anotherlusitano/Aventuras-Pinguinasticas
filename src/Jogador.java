@@ -1,3 +1,4 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,47 +22,25 @@ public class Jogador {
 
     public Jogador(String nome) {
         this.nome = nome;
+        this.pontuacao = 0;
+    }
 
-        File ficheiro = new File("pontuacao.txt");
-        
+    /// Vai criar o ficheiro pontuacao com a seguinte formataçao:<br>
+    /// nomeJogador;pontuacao <br>
+    /// Vai ter o ponto e virgula a separar
+    public void criarFicheiroPontuacao() {
+        String nomeEpontuacao = this.nome + ";" + this.pontuacao;
+
         try {
-            // Lista para armazenar todas as linhas do ficheiro
-            List<String> linhas = new ArrayList<>();
+            FileWriter fileWriter = new FileWriter("pontuacao.txt", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            if (!ficheiro.exists()) {
-                // Cria o ficheiro com a pontuação inicial se ele ainda não existe
-                FileWriter writer = new FileWriter(ficheiro);
-                writer.write(String.valueOf(pontuacao) + "\n");
-                writer.close();
-            } else {
-                // Lê todas as linhas do ficheiro
-                Scanner reader = new Scanner(ficheiro);
-                while (reader.hasNextLine()) {
-                    linhas.add(reader.nextLine());
-                }
-                reader.close();
+            bufferedWriter.write(nomeEpontuacao);
+            bufferedWriter.newLine();
 
-                // Atualiza a última linha ou adiciona uma nova se o ficheiro estiver vazio
-                if (!linhas.isEmpty()) {
-                    linhas.set(linhas.size() - 1, String.valueOf(pontuacao));
-                } else {
-                    linhas.add(String.valueOf(pontuacao));
-                }
-
-                // Reescreve o ficheiro com as linhas atualizadas
-                FileWriter writer = new FileWriter(ficheiro);
-                for (String linha : linhas) {
-                    writer.write(linha + "\n");
-                }
-                writer.close();
-            }
-
-            // Atualiza a pontuação do objeto
-            this.pontuacao = pontuacao;
-
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Erro ao inicializar a pontuação: " + e.getMessage());
-            this.pontuacao = pontuacao; // Valor padrão em caso de erro
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.out.println("Aconteceu um erro ao criar o ficheiro pontuacao.txt: " + e.getMessage());
         }
     }
 
@@ -110,7 +89,6 @@ public class Jogador {
     }
 
     public int escolher_direcao() {
-        Scanner input = new Scanner(System.in);
         int opcao = 0;
         while (opcao < 1 || opcao > 4) {
             System.out.println("Escolha uma direcao");
@@ -118,10 +96,9 @@ public class Jogador {
             System.out.println("2 - baixo");
             System.out.println("3 - esquerda");
             System.out.println("4 - direita");
-            opcao = input.nextInt();
+            opcao = Main.scanner.nextInt();
             System.out.println(opcao);
         }
-        //input.close();
         return opcao;
     }
 }
