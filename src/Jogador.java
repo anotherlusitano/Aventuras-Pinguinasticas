@@ -1,7 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -44,6 +41,43 @@ public class Jogador {
         }
     }
 
+    /**
+     * Esta funçao vai ler e guardar todas as linhas do ficheiro.<br>
+     * Depois vai alterar a pontuacao da ultima linha do ficheiro. <br>
+     * E por fim, vai escrever tudo de volta no ficheiro
+     */
+    public void atualizarPontuacao() {
+        List<String> linhas_do_ficheiro = new ArrayList<>();
+        String ficheiro = "pontuacao.txt";
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(ficheiro));
+
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                linhas_do_ficheiro.add(linha);
+            }
+            reader.close();
+
+            String ultima_linha = linhas_do_ficheiro.remove(linhas_do_ficheiro.size() - 1);
+            String[] divisao = ultima_linha.split(";");
+
+            ultima_linha = divisao[0] + ";" + this.pontuacao;
+            linhas_do_ficheiro.add(ultima_linha);
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(ficheiro, false));
+
+            for (String updatedLine : linhas_do_ficheiro) {
+                writer.write(updatedLine);
+                writer.newLine();
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Aconteceu um erro ao atualizar a pontuacao do ficheiro pontuacao.txt: " + e.getMessage());
+        }
+    }
+
     public String getNome() {
         return nome;
     }
@@ -59,33 +93,7 @@ public class Jogador {
     public void setPontuacao(int pontuacao) {
         this.pontuacao = pontuacao;
 
-        // Atualiza apenas a última linha do ficheiro
-        File ficheiro = new File("pontuacao.txt");
-        try {
-            // Lê todas as linhas do ficheiro
-            List<String> linhas = new ArrayList<>();
-            Scanner reader = new Scanner(ficheiro);
-            while (reader.hasNextLine()) {
-                linhas.add(reader.nextLine());
-            }
-            reader.close();
-
-            // Substitui a última linha pela nova pontuação
-            if (!linhas.isEmpty()) {
-                linhas.set(linhas.size() - 1, String.valueOf(pontuacao));
-            } else {
-                linhas.add(String.valueOf(pontuacao)); // Adiciona a pontuação se o ficheiro estava vazio
-            }
-
-            // Apaga o conteúdo do ficheiro e reescreve todas as linhas
-            FileWriter writer = new FileWriter(ficheiro);
-            for (String l : linhas) {
-                writer.write(l + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.err.println("Erro ao salvar a pontuação: " + e.getMessage());
-        }
+        atualizarPontuacao();
     }
 
     public int escolher_direcao() {
