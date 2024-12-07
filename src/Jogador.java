@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Esta e a classe que implementa toda a logica do Jogador.
@@ -96,14 +95,16 @@ public class Jogador {
         atualizarPontuacao();
     }
 
-    public int escolher_direcao() {
+    /// Vai imprimir o menu e retornar a escolha do {@link Jogador}
+    public int escolherOqueFazer() {
         int opcao = 0;
-        while (opcao < 1 || opcao > 4) {
+        while (opcao < 1 || opcao > 5) {
             System.out.println("Escolha uma direcao");
-            System.out.println("1 - cima");
-            System.out.println("2 - baixo");
-            System.out.println("3 - esquerda");
-            System.out.println("4 - direita");
+            System.out.println("1 - andar para cima");
+            System.out.println("2 - andar para baixo");
+            System.out.println("3 - andar para a esquerda");
+            System.out.println("4 - andar para a direita");
+            System.out.println("5 - ver recursos atuais");
             opcao = Main.scanner.nextInt();
             System.out.println(opcao);
         }

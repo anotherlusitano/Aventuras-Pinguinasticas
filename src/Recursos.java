@@ -43,6 +43,11 @@ public class Recursos {
         this.vida_da_tripulacao = Math.min(this.vida_da_tripulacao + recursos_para_somar.getVida_da_tripulacao(), 100);
     }
 
+    @Override
+    public String toString() {
+        return "Energia: " + this.energia + "\nPeixe: " + this.peixe + "\nMorale:" + this.morale + "\nVida da Tripulaçao: "+ this.vida_da_tripulacao;
+    }
+
     public int getPeixe() {
         return peixe;
     }

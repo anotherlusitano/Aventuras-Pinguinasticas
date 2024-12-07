@@ -40,8 +40,8 @@ public class Jogo {
             mapinha.atualizarMapa();
             mapinha.mostrar();
 
-            int direcao = jogador.escolher_direcao();
-            mapinha.moverBarco(direcao);
+            int opcao = jogador.escolherOqueFazer();
+            executarOpcaoMenu(opcao);
 
             Ilha ilhaOndeEstaOBarco = mapinha.verificarChegouNaIlha();
 
@@ -73,6 +73,17 @@ public class Jogo {
 
         if (fimDeJogo) {
             GameOver.inicializarGameOver();
+        }
+    }
+
+    /// Vai receber a opçao que o jogador escolheu em {@link Jogador#escolherOqueFazer()} e vai responder a essa opçao.
+    private void executarOpcaoMenu(int opcao) {
+        if (opcao == 5) {
+            // Vai mostrar os recursos
+            System.out.println(this.mapa.getBarco().getRecursos().toString());
+        } else {
+            // Vai mover o Barco
+            this.mapa.moverBarco(opcao);
         }
     }
 
