@@ -29,7 +29,10 @@ public class Main {
         int numeroIlhas = 1;
 
         System.out.println("Antes de começarmos...");
-        System.out.println("Quantas Ilhas queres no mapa? (podes escolher de 1 a 27)");
+        System.out.println("Por favor, escolha o número de ilhas no mapa (1 a 27):");
+        System.out.println("Nota: Quanto mais ilhas escolheres, mais tempo levará para gerar o mapa.");
+        System.out.println("Recomendamos escolher 10 ilhas para um equilíbrio ideal.");
+        System.out.print("Escolha o número de ilhas: ");
         do {
             numeroIlhas = scanner.nextInt();
         }
