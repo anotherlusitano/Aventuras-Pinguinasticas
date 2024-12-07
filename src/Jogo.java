@@ -40,7 +40,10 @@ public class Jogo {
             mapinha.atualizarMapa();
             mapinha.mostrar();
 
-            Coordenada posicaoAntigaDoBarco = mapinha.getBarco().getCoordenadas();
+            // Criamos um novo objeto para nao ser uma referencia do objeto Barco.Coordenada
+            int posicaoXantiga = mapinha.getBarco().getCoordenadas().getX();
+            int posicaoYantiga = mapinha.getBarco().getCoordenadas().getY();
+            Coordenada posicaoAntigaDoBarco = new Coordenada(posicaoXantiga, posicaoYantiga);
 
             int opcao = jogador.escolherOqueFazer();
             executarOpcaoMenu(opcao);
@@ -69,7 +72,7 @@ public class Jogo {
             Coordenada posicaoAtualDoBarco = mapinha.getBarco().getCoordenadas();
 
             // Vai gastar 5 de energia cada vez que o Barco se mexer para uma nova posiçao
-            if (posicaoAntigaDoBarco.equals(posicaoAtualDoBarco)) {
+            if (!posicaoAntigaDoBarco.equals(posicaoAtualDoBarco)) {
                 int energia_atual = mapinha.getBarco().getRecursos().getEnergia();
                 mapinha.getBarco().getRecursos().setEnergia(energia_atual-5);
             }
