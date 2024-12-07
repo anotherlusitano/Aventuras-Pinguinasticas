@@ -37,10 +37,10 @@ public class Recursos {
 
     /// Vai somar com os {@link Recursos} que receber
     public void somar(Recursos recursos_para_somar) {
-        this.energia += recursos_para_somar.getEnergia();
-        this.peixe += recursos_para_somar.getPeixe();
-        this.morale += recursos_para_somar.getMorale();
-        this.vida_da_tripulacao += recursos_para_somar.getVida_da_tripulacao();
+        this.energia = Math.min(this.energia + recursos_para_somar.getEnergia(), 100);
+        this.peixe = Math.min(this.peixe + recursos_para_somar.getPeixe(), 100);
+        this.morale = Math.min(this.morale + recursos_para_somar.getMorale(), 100);
+        this.vida_da_tripulacao = Math.min(this.vida_da_tripulacao + recursos_para_somar.getVida_da_tripulacao(), 100);
     }
 
     public int getPeixe() {
