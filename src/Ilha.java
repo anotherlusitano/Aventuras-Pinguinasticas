@@ -7,19 +7,6 @@
 import java.util.*;
 
 /**
- * Serve para medir qual a dificuldade da ilha, por exemplo: <br>
- * uma ilha com dificuldade <i>FACIL</i> vai gastar menos recursos que uma ilha com dificuldade <i>DIFICIL</i>
- */
-enum Dificuldade {
-    /// E uma {@link Ilha} de dificuldade dificil
-    DIFICIL,
-    /// E uma {@link Ilha} de dificuldade mediana
-    MEDIO,
-    /// E uma {@link Ilha} de dificuldade facil
-    FACIL
-}
-
-/**
  * Esta e a classe que implementa toda a logica das Ilhas.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
