@@ -52,6 +52,10 @@ public class Jogo {
                 // e apartir dai vai remover ou adicionar recursos ao Barco do Jogador
                 JogoGUI.inicializarInterface(missaoDaIlha, mapinha.getBarco());
 
+                // Por cada Ilha que visita, ganha 100 pontos
+                int pontuacaoAtual = jogador.getPontuacao();
+                jogador.setPontuacao(pontuacaoAtual+100);
+
                 if (mapinha.verificarSeTodasAsIlhasForamVisitadas()) {
                     System.out.println("Muitos parabens " + jogador.getNome() + "!");
                     System.out.println("Conseguiste navegar pelos 7 mares e acumular uma pontuaçao de " + jogador.getPontuacao() + " pontos!");
