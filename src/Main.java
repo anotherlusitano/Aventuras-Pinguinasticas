@@ -11,7 +11,11 @@ public class Main {
         System.out.println("Mas antes disso, qual e o teu nome?");
 
         scanner = new Scanner(System.in);
-        String nome_do_jogador = scanner.nextLine();
+        String nome_do_jogador = "";
+        do {
+            nome_do_jogador = scanner.nextLine();
+        }
+        while (nome_do_jogador.contains(";"));
 
         Jogador jogador = new Jogador(nome_do_jogador);
 
