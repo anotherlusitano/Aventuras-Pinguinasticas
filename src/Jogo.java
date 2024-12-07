@@ -79,6 +79,8 @@ public class Jogo {
 
         if (fimDeJogo) {
             GameOver.inicializarGameOver();
+            System.out.println("Perdeste " + jogador.getNome() + "...");
+            System.out.println("Nao conseguiste acabar o Jogo, mas ao menos acumulaste uma riqueza de " + jogador.getPontuacao() + " pontos...");
         }
     }
 
