@@ -31,7 +31,7 @@ public class Jogo {
         this.mapa = mapa;
     }
 
-    /// Esta e a funcao que vai iniciar o Jogo
+    /// Esta e a funcao que vai iniciar o Jogo. <br>
     public void iniciar() {
         Mapa mapinha = getMapa();
 
@@ -51,6 +51,10 @@ public class Jogo {
                 // vai mostrar a interface com a Missao
                 // e apartir dai vai remover ou adicionar recursos ao Barco do Jogador
                 JogoGUI.inicializarInterface(missaoDaIlha, mapinha.getBarco());
+
+                // Por cada Ilha que visita, ganha 100 pontos
+                int pontuacaoAtual = jogador.getPontuacao();
+                jogador.setPontuacao(pontuacaoAtual+100);
 
                 if (mapinha.verificarSeTodasAsIlhasForamVisitadas()) {
                     System.out.println("Muitos parabens " + jogador.getNome() + "!");
