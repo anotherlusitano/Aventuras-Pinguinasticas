@@ -19,7 +19,7 @@ public class Jogador {
     /** E a pontuacao do Jogador que vai ser armazenada em um ficheiro*/
     protected int pontuacao;
 
-    public Jogador(String nome, int pontuacao) {
+    public Jogador(String nome) {
         this.nome = nome;
 
         File ficheiro = new File("pontuacao.txt");
