@@ -48,8 +48,8 @@ public class Opcao {
 
     @Override
     public String toString() {
-        String vai_gastar = "Vai gastar: " + this.custo.getEnergia() + " energia; " + this.custo.getPeixe() + " peixe; " + this.custo.getMorale() + " morale; "+ this.custo.getVida_da_tripulacao() + " vida da tripulaçao; ";
-        String vai_receber = "Vai receber: " + this.ganho.getEnergia() + " energia; " + this.ganho.getPeixe() + " peixe; " + this.ganho.getMorale() + " morale; "+ this.ganho.getVida_da_tripulacao() + " vida da tripulaçao; ";
+        String vai_gastar = "Vai gastar: " + this.custo.getEnergia() + " energia; " + this.custo.getPeixe() + " peixe; " + this.custo.getMoral() + " moral; "+ this.custo.getVida_da_tripulacao() + " vida da tripulaçao; ";
+        String vai_receber = "Vai receber: " + this.ganho.getEnergia() + " energia; " + this.ganho.getPeixe() + " peixe; " + this.ganho.getMoral() + " moral; "+ this.ganho.getVida_da_tripulacao() + " vida da tripulaçao; ";
 
         return "<html>" + vai_gastar + "<br>" + vai_receber + "</html>";
     }

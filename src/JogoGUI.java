@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.InvocationTargetException;
 
 public class JogoGUI extends JFrame {
 
@@ -75,12 +74,12 @@ public class JogoGUI extends JFrame {
         // Criação de um JLabel para exibir as informações
         int peixe =  barco.getRecursos().getPeixe();
         int energia = barco.getRecursos().getEnergia();
-        int morale = barco.getRecursos().getMorale();
+        int moral = barco.getRecursos().getMoral();
         int vida_da_tripulacao = barco.getRecursos().getVida_da_tripulacao();
         JLabel infoLabel = new JLabel(
                 "<html>Energia: " + energia +
                         "<br>Peixe: " + peixe +
-                        "<br>Morale: " + morale +
+                        "<br>Moral: " + moral +
                         "<br>Vida da Tripulação: " + vida_da_tripulacao + "</html>"
         );
         infoLabel.setFont(new Font("Serif", Font.PLAIN, 16)); // Ajusta a fonte

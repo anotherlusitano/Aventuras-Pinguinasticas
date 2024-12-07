@@ -13,7 +13,7 @@ public class Barco extends Jogador {
      * O Barco tem os seguintes recursos: <br>
      * - {@link Recursos#energia} <br>
      * - {@link Recursos#peixe} <br>
-     * - {@link Recursos#morale} <br>
+     * - {@link Recursos#moral} <br>
      * - {@link Recursos#vida_da_tripulacao} <br>
      */
     private Recursos recursos;
@@ -56,7 +56,7 @@ public class Barco extends Jogador {
             return false;
         } else if (recursos.getPeixe() <= 0) {
             return false;
-        } else if (recursos.getMorale() <= 0) {
+        } else if (recursos.getMoral() <= 0) {
             return false;
         } else if (recursos.getVida_da_tripulacao() <= 0) {
             return false;
