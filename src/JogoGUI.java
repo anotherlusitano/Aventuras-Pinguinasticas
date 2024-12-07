@@ -9,7 +9,7 @@ public class JogoGUI extends JFrame {
     public JogoGUI(Missao missao, Barco barco) {
         // Configurações da janela
         setTitle("Interface de Missão");
-        setSize(1000, 800);
+        setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
