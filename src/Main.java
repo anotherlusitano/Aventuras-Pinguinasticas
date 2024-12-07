@@ -25,13 +25,17 @@ public class Main {
 
         Barco barco = new Barco(jogador.getNome(), recursos);
 
-        Ilha[] ilhas = null;
-        try {
-            ilhas = Ilha.criarIlhas(9);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.exit(1);
+        Ilha[] ilhas;
+        int numeroIlhas = 1;
+
+        System.out.println("Antes de começarmos...");
+        System.out.println("Quantas Ilhas queres no mapa? (podes escolher de 1 a 27)");
+        do {
+            numeroIlhas = scanner.nextInt();
         }
+        while (numeroIlhas < 1 || numeroIlhas > 27);
+
+        ilhas = Ilha.criarIlhas(numeroIlhas);
 
         Mapa mapa = new Mapa(barco, ilhas);
 
