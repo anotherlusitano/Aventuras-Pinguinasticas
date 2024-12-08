@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -30,37 +31,42 @@ public class Missao {
     private List<Opcao> gerarOpcoes() {
         List<Opcao> opcoes = new ArrayList<>();
 
-        for (int i = 1; i <= 3; i++) {
+        // A logica destas 3 linhas e criar uma lista que vai ate a quantidade de TEXTO_DAS_OPCOES que tivermos
+        // ou seja, se tivermos 6 Opcoes para o texto, a lista tem de estar preenchida de 0..6
+        // e com isso, vai trocar a ordem dos numeros para dar nos Opcoes "aleatorias" e unicas
+        // o problema disto e que precisamos ter a mesma quantidade de TEXTO_DAS_OPCOES para cada dificuldade
+        // e tambem precisamos mudar ate onde vai o *i*, ja que ele representa ate qual Opcao vai escolher
+        // e claro que quanto mais Opcoes tivermos, mais cresce em complexidade O(N)
+        // mas por agora, esta uma boa soluçao.
+        ArrayList<Integer> listaAleatoriaOpcoes = new ArrayList<Integer>();
+        for (int i=0; i<6; i++) listaAleatoriaOpcoes.add(i);
+        Collections.shuffle(listaAleatoriaOpcoes);
+
+        for (int i = 0; i < 3; i++) {
             Recursos custo = calcularCustos();
             Recursos ganho = calcularGanhos();
-            String texto = gerarTexto();
+
+            String texto = gerarTexto(listaAleatoriaOpcoes.get(i));
+
             opcoes.add(new Opcao(texto, custo, ganho));
         }
         return opcoes;
     }
 
     /// Vai gerar o texto da opçao baseado na {@link Dificuldade} da {@link Missao}
-    private String gerarTexto() {
-        Random random = new Random();
-
+    private String gerarTexto(int opcao) {
         if (dificuldade == Dificuldade.FACIL) {
             String[] TEXTO_DAS_OPCOES_FACEIS = {"Pescar", "Procurar por moedas de ouro", "Brincar na areia","Nadar com golfinhos", "Conversar na praia", "Fazer um acampamento"};
 
-            String texto_da_opcao = TEXTO_DAS_OPCOES_FACEIS[random.nextInt(TEXTO_DAS_OPCOES_FACEIS.length)];
-
-            return texto_da_opcao;
+            return TEXTO_DAS_OPCOES_FACEIS[opcao];
         } else if (dificuldade == Dificuldade.MEDIO) {
             String[] TEXTO_DAS_OPCOES_MEDIO = {"Caçar enguias", "Explorar a selva", "Lutar com caranguejos","Nadar com tubaroes", "Lutar com outros pinguins", "Fazer um Forte contra a tempestade"};
 
-            String texto_da_opcao = TEXTO_DAS_OPCOES_MEDIO[random.nextInt(TEXTO_DAS_OPCOES_MEDIO.length)];
-
-            return texto_da_opcao;
+            return TEXTO_DAS_OPCOES_MEDIO[opcao];
         } else {
             String[] TEXTO_DAS_OPCOES_DIFICEIS = {"Guerrear contra a Ilha", "Explorar a caverna obscura", "Lutar com piratas","Nadar com o Kraken", "Roubar a esmeralda perdida", "Matar o rei da Ilha"};
 
-            String texto_da_opcao = TEXTO_DAS_OPCOES_DIFICEIS[random.nextInt(TEXTO_DAS_OPCOES_DIFICEIS.length)];
-
-            return texto_da_opcao;
+            return TEXTO_DAS_OPCOES_DIFICEIS[opcao];
         }
     }
 
