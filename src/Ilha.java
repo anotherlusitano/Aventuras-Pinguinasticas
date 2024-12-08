@@ -55,30 +55,69 @@ public class Ilha {
     /**
      * Funcao que gera as posicoes <i>x</i> e <i>y</i> de uma {@link Ilha}. <br>
      * Tambem faz que a Ilha tenha uma determinada posicao dependendo da sua dificuldade. <br>
-     * A Ilha começa a aparecer depois da coordenada 1x1, ou seja, x=1 e y=1. <br>
+     * Pode ter no maximo 72 Ilhas, sendo elas, 12 faceis, 24 medias e 36 dificeis.<br><br>
+     * Explicaçao: <br>
+     * Esta e a organizaçao das {@link Ilha}s pelo mapa:
+     * <pre>
+     * 0 0 1 1 0 1 1 0 1 1
+     * 0 0 1 1 0 1 1 0 1 1
+     * 1 1 1 1 0 1 1 0 1 1
+     * 1 1 1 1 0 1 1 0 1 1
+     * 0 0 0 0 0 1 1 0 1 1
+     * 1 1 1 1 1 1 1 0 1 1
+     * 1 1 1 1 1 1 1 0 1 1
+     * 0 0 0 0 0 0 0 0 1 1
+     * 1 1 1 1 1 1 1 1 1 1
+     * 1 1 1 1 1 1 1 1 1 1
+     *
+     * 1 = Ilha ; 0 = Onda
+     * </pre>
+     * Para ser considerado uma {@link Ilha} o <i>X</i> ou o <i>Y</i> precisa de ser 2, 3, 5, 6, 8 ou 9.<br>
+     * Apartir do momento que escolhemos que o X/Y seja um desses numeros, vamos gerar um numero aleatorio ate esse numero para o outro eixo.<br>
+     * Exemplo:<br>
+     * X = 5 entao Y = RANDOM(0..X)<br>
+     * Y = 3 entao X = RANDOM(0..Y)<br>
+     * <br>
+     * Cada divisao representa uma dificuldade, ou seja, a primeira divisao de 1's representa as Ilhas de {@link Dificuldade#FACIL},
+     * a segunda divisao representa as Ilhas de {@link Dificuldade#MEDIO} e a ultima divisao representa a {@link Dificuldade#DIFICIL}.
      * @param dificuldade
      * @return as posicoes X e Y
      */
     public static Coordenada gerarCoordenadas(Dificuldade dificuldade) {
         final Random RANDOM = new Random();
         int x = 0, y = 0;
+        int escolherXouY;
 
-        /// Cada dificuldade pode gerar 9 Ilhas (NxN), entao podemos ter um total de 22 ilhas.
         switch (dificuldade) {
-            /// Vai gerar posicoes de 2 a 4
             case FACIL -> {
-                x = 2 + RANDOM.nextInt(3);
-                y = 2 + RANDOM.nextInt(3);
+                escolherXouY = RANDOM.nextInt(2);
+                if (escolherXouY == 0) {
+                    x = 2 + RANDOM.nextInt(2);
+                    y = RANDOM.nextInt(x);
+                } else {
+                    y = 2 + RANDOM.nextInt(2);
+                    x = RANDOM.nextInt(y);
+                }
             }
-            /// Vai gerar posicoes de 5 a 7
             case MEDIO -> {
-                x = 5 + RANDOM.nextInt(3);
-                y = 5 + RANDOM.nextInt(3);
+                escolherXouY = RANDOM.nextInt(2);
+                if (escolherXouY == 0) {
+                    x = 5 + RANDOM.nextInt(2);
+                    y = RANDOM.nextInt(x);
+                } else {
+                    y = 5 + RANDOM.nextInt(2);
+                    x = RANDOM.nextInt(y);
+                }
             }
-            /// Vai gerar posicoes de 8 a 9
             case DIFICIL -> {
-                x = 8 + RANDOM.nextInt(2);
-                y = 8 + RANDOM.nextInt(2);
+                escolherXouY = RANDOM.nextInt(2);
+                if (escolherXouY == 0) {
+                    x = 8 + RANDOM.nextInt(2);
+                    y = RANDOM.nextInt(x);
+                } else {
+                    y = 8 + RANDOM.nextInt(2);
+                    x = RANDOM.nextInt(y);
+                }
             }
         }
         return new Coordenada(x, y);
@@ -102,9 +141,9 @@ public class Ilha {
         Ilha[] ilhas = new Ilha[quantidade_ilhas];
 
         /// Estas variaveis servem para contar se existe ilhas de X dificuldade disponiveis
-        int ilhasFaceisDisponiveis = 9;
-        int ilhasMediasDisponiveis = 9;
-        int ilhasDificeisDisponiveis = 4;
+        int ilhasFaceisDisponiveis = 12;
+        int ilhasMediasDisponiveis = 24;
+        int ilhasDificeisDisponiveis = 36;
 
         /// E a lista de coordenadas UNICAS
         Set<Coordenada> lista_de_coordenadas = new HashSet<>();
