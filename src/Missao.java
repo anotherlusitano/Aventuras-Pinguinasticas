@@ -39,7 +39,7 @@ public class Missao {
         // e claro que quanto mais Opcoes tivermos, mais cresce em complexidade O(N)
         // mas por agora, esta uma boa soluçao.
         ArrayList<Integer> listaAleatoriaOpcoes = new ArrayList<Integer>();
-        for (int i=0; i<6; i++) listaAleatoriaOpcoes.add(i);
+        for (int i=0; i<12; i++) listaAleatoriaOpcoes.add(i);
         Collections.shuffle(listaAleatoriaOpcoes);
 
         for (int i = 0; i < 3; i++) {
@@ -56,15 +56,30 @@ public class Missao {
     /// Vai gerar o texto da opçao baseado na {@link Dificuldade} da {@link Missao}
     private String gerarTexto(int opcao) {
         if (dificuldade == Dificuldade.FACIL) {
-            String[] TEXTO_DAS_OPCOES_FACEIS = {"Pescar", "Procurar por moedas de ouro", "Brincar na areia","Nadar com golfinhos", "Conversar na praia", "Fazer um acampamento"};
+            String[] TEXTO_DAS_OPCOES_FACEIS = {
+                    "Pescar", "Procurar por moedas de ouro", "Brincar na areia",
+                    "Nadar com golfinhos", "Conversar na praia", "Fazer um acampamento",
+                    "Roubar um comerciante", "Limpar a casa de um pinguim", "Fazer uma partida",
+                    "Explorar o aldeia", "Negociar com o comerciante", "Concertar o Barco"
+            };
 
             return TEXTO_DAS_OPCOES_FACEIS[opcao];
         } else if (dificuldade == Dificuldade.MEDIO) {
-            String[] TEXTO_DAS_OPCOES_MEDIO = {"Caçar enguias", "Explorar a selva", "Lutar com caranguejos","Nadar com tubaroes", "Lutar com outros pinguins", "Fazer um Forte contra a tempestade"};
+            String[] TEXTO_DAS_OPCOES_MEDIO = {
+                    "Caçar enguias", "Explorar a selva", "Lutar com caranguejos",
+                    "Nadar com tubaroes", "Lutar com pinguins", "Fazer um Forte contra a tempestade",
+                    "Invadir o tanque de peixes", "Roubar ouro", "Fazer uma festa",
+                    "Apostar no PeixaMilhoes", "Explorar a montanha", "Explorar uma gruta"
+            };
 
             return TEXTO_DAS_OPCOES_MEDIO[opcao];
         } else {
-            String[] TEXTO_DAS_OPCOES_DIFICEIS = {"Guerrear contra a Ilha", "Explorar a caverna obscura", "Lutar com piratas","Nadar com o Kraken", "Roubar a esmeralda perdida", "Matar o rei da Ilha"};
+            String[] TEXTO_DAS_OPCOES_DIFICEIS = {
+                    "Guerrear contra a Ilha", "Explorar a caverna obscura", "Lutar com piratas",
+                    "Nadar com o Kraken", "Roubar a esmeralda perdida", "Matar o rei",
+                    "Lutar contra a Macacada", "Roubar o rei", "Roubar piratas",
+                    "Explorar o vulcao", "Invocar o deus pinguim", "Começar uma revoluçao"
+            };
 
             return TEXTO_DAS_OPCOES_DIFICEIS[opcao];
         }
