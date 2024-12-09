@@ -53,8 +53,8 @@ public class Ilha {
     }
 
     /**
-     * Funcao que gera as posicoes <i>x</i> e <i>y</i> de uma {@link Ilha}. <br>
-     * Tambem faz que a Ilha tenha uma determinada posicao dependendo da sua dificuldade. <br>
+     * Funcao que gera uma lista de posicoes <i>x</i> e <i>y</i> de uma {@link Ilha}, baseado na sua {@link Dificuldade}. <br>
+     * Todos os valores sao pre-computados/gerados para uma otimizaçao na geraçao, ja que se fossemos com valores aleatorios demoraria imenso tempo.<br>
      * Pode ter no maximo 72 Ilhas, sendo elas, 12 faceis, 24 medias e 36 dificeis.<br><br>
      * Explicaçao: <br>
      * Esta e a organizaçao das {@link Ilha}s pelo mapa:
@@ -72,55 +72,76 @@ public class Ilha {
      *
      * 1 = Ilha ; 0 = Onda
      * </pre>
-     * Para ser considerado uma {@link Ilha} o <i>X</i> ou o <i>Y</i> precisa de ser 2, 3, 5, 6, 8 ou 9.<br>
-     * Apartir do momento que escolhemos que o X/Y seja um desses numeros, vamos gerar um numero aleatorio ate esse numero para o outro eixo.<br>
-     * Exemplo:<br>
-     * X = 5 entao Y = RANDOM(0..X)<br>
-     * Y = 3 entao X = RANDOM(0..Y)<br>
-     * <br>
      * Cada divisao representa uma dificuldade, ou seja, a primeira divisao de 1's representa as Ilhas de {@link Dificuldade#FACIL},
      * a segunda divisao representa as Ilhas de {@link Dificuldade#MEDIO} e a ultima divisao representa a {@link Dificuldade#DIFICIL}.
+     * <br><br>
+     * Para ser considerado uma {@link Ilha} o <i>X</i> ou o <i>Y</i> precisa de ser 2, 3, 5, 6, 8 ou 9.<br>
+     * Primeiro vamos escolher gerar todas as posiçoes com X, ou seja:
+     * <pre>
+     *     (X = 2 & X = 3) & Y = FOR(0..X)
+     * </pre>
+     * e fazemos a mesma coisa para o Y:
+     * <pre>
+     *     (Y = 2 & Y = 3) & X = FOR(0..Y-1)
+     * </pre>
+     * Para cada {@link Coordenada} gerada, vamos adicionar a uma lista, e depois vamos dar um <i>SHUFFLE</i> nessa lista para torna-la pseudo-aleatoria.<br>
+     * <br>
+     * <b>WARNING:</b> o unico "se nao" desta funçao e que gera todas as Coordenadas das Ilhas, de uma dada dificuldade, mesmo que so queiramos 1 Coordenada.
      * @param dificuldade
      * @return as posicoes X e Y
      */
-    public static Coordenada gerarCoordenadas(Dificuldade dificuldade) {
-        final Random RANDOM = new Random();
-        int x = 0, y = 0;
-        int escolherXouY;
+    private static List<Coordenada> gerarCoordenadas(Dificuldade dificuldade) {
+        List<Coordenada> coordenadas = new ArrayList<>();
 
         switch (dificuldade) {
             case FACIL -> {
-                escolherXouY = RANDOM.nextInt(2);
-                if (escolherXouY == 0) {
-                    x = 2 + RANDOM.nextInt(2);
-                    y = RANDOM.nextInt(x);
-                } else {
-                    y = 2 + RANDOM.nextInt(2);
-                    x = RANDOM.nextInt(y);
+                for (int x = 2; x <= 3; x++) {
+                    for (int y = 0; y <= x; y++) {
+                        coordenadas.add(new Coordenada(x, y));
+                    }
                 }
+                for (int y = 2; y <= 3; y++) {
+                    for (int x = 0; x < y; x++) {
+                        coordenadas.add(new Coordenada(x, y));
+                    }
+                }
+
+                Collections.shuffle(coordenadas);
+                return coordenadas;
             }
             case MEDIO -> {
-                escolherXouY = RANDOM.nextInt(2);
-                if (escolherXouY == 0) {
-                    x = 5 + RANDOM.nextInt(2);
-                    y = RANDOM.nextInt(x);
-                } else {
-                    y = 5 + RANDOM.nextInt(2);
-                    x = RANDOM.nextInt(y);
+                for (int x = 5; x <= 6; x++) {
+                    for (int y = 0; y <= x; y++) {
+                        coordenadas.add(new Coordenada(x, y));
+                    }
                 }
+                for (int y = 5; y <= 6; y++) {
+                    for (int x = 0; x < y; x++) {
+                        coordenadas.add(new Coordenada(x, y));
+                    }
+                }
+
+                Collections.shuffle(coordenadas);
+                return coordenadas;
             }
             case DIFICIL -> {
-                escolherXouY = RANDOM.nextInt(2);
-                if (escolherXouY == 0) {
-                    x = 8 + RANDOM.nextInt(2);
-                    y = RANDOM.nextInt(x);
-                } else {
-                    y = 8 + RANDOM.nextInt(2);
-                    x = RANDOM.nextInt(y);
+                for (int x = 8; x <= 9; x++) {
+                    for (int y = 0; y < x; y++) {
+                        coordenadas.add(new Coordenada(x, y));
+                    }
                 }
+                for (int y = 8; y <= 9; y++) {
+                    for (int x = 0; x <= y; x++) {
+                        coordenadas.add(new Coordenada(x, y));
+                    }
+                }
+
+                Collections.shuffle(coordenadas);
+                return coordenadas;
             }
         }
-        return new Coordenada(x, y);
+        // Isto provavelmente nunca vai acontecer ja que so existe 3 dificuldades
+        return coordenadas;
     }
 
     /**
@@ -145,13 +166,17 @@ public class Ilha {
         int ilhasMediasDisponiveis = 24;
         int ilhasDificeisDisponiveis = 36;
 
-        /// E a lista de coordenadas UNICAS
-        Set<Coordenada> lista_de_coordenadas = new HashSet<>();
+        /// Sao as listas de coordenadas UNICAS, divididas por Dificuldade
+        List<Coordenada> coordenadasFaceis = gerarCoordenadas(Dificuldade.FACIL);
+        List<Coordenada> coordenadasMedias = gerarCoordenadas(Dificuldade.MEDIO);
+        List<Coordenada> coordenadasDificeis = gerarCoordenadas(Dificuldade.DIFICIL);
+
+        Coordenada coordenadas_da_ilha;
 
         for (int i = 0; i < quantidade_ilhas; i++) {
             /*
                 Primeiro geramos uma dificuldade.
-                Depois verificamos se essa ilha pode ter essa dificuldade ja que o maximo e 9.
+                Depois verificamos se essa ilha pode ter essa dificuldade.
                 Se nao poder ter essa dificuldade, vai gerar uma nova dificuldade ate dar.
              */
             Dificuldade dificuldade_da_ilha = gerarDificuldade();
@@ -164,24 +189,14 @@ public class Ilha {
 
             if (dificuldade_da_ilha == Dificuldade.FACIL) {
                 ilhasFaceisDisponiveis -= 1;
+                coordenadas_da_ilha = coordenadasFaceis.get(ilhasFaceisDisponiveis);
             } else if (dificuldade_da_ilha == Dificuldade.MEDIO) {
                 ilhasMediasDisponiveis -= 1;
+                coordenadas_da_ilha = coordenadasMedias.get(ilhasMediasDisponiveis);
             } else {
                 ilhasDificeisDisponiveis -= 1;
+                coordenadas_da_ilha = coordenadasDificeis.get(ilhasDificeisDisponiveis);
             }
-
-            /*
-                Aqui nos geramos as coordenadas para a Ilha, ou seja,
-                criamos uma lista de coordenadas, para saber quais coordenadas estao em uso,
-                depois se uma dessas coordenadas estiver em uso, vai voltar a gerar a coordenada ate dar
-             */
-            Coordenada coordenadas_da_ilha = gerarCoordenadas(dificuldade_da_ilha);
-
-            while (lista_de_coordenadas.contains(coordenadas_da_ilha)) {
-                coordenadas_da_ilha = gerarCoordenadas(dificuldade_da_ilha);
-            }
-
-            lista_de_coordenadas.add(coordenadas_da_ilha);
 
             Random random = new Random();
             String nome_da_ilha = NOMES_PARA_AS_ILHAS[random.nextInt(NOMES_PARA_AS_ILHAS.length)];
