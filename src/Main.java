@@ -33,9 +33,9 @@ public class Main {
         System.out.println("Recomendamos escolher 22 ilhas para um equilíbrio ideal.");
         System.out.print("Escolha o número de ilhas: ");
         do {
+            while (!scanner.hasNextInt()) scanner.next();
             numeroIlhas = scanner.nextInt();
-        }
-        while (numeroIlhas < 1 || numeroIlhas > 72);
+        } while (numeroIlhas < 1 || numeroIlhas > 72);
 
         ilhas = Ilha.criarIlhas(numeroIlhas);
 
