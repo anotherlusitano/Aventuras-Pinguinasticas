@@ -15,7 +15,7 @@ public class Main {
         do {
             nome_do_jogador = scanner.nextLine();
         }
-        while (nome_do_jogador.contains(";"));
+        while (nome_do_jogador.contains(";") || nome_do_jogador.isBlank());
 
         Jogador jogador = new Jogador(nome_do_jogador);
 
