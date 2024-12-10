@@ -98,16 +98,19 @@ public class Jogador {
     /// Vai imprimir o menu e retornar a escolha do {@link Jogador}
     public int escolherOqueFazer() {
         int opcao = 0;
-        while (opcao < 1 || opcao > 5) {
-            System.out.println("Escolha o que fazer");
-            System.out.println("1 - andar para cima");
-            System.out.println("2 - andar para baixo");
-            System.out.println("3 - andar para a esquerda");
-            System.out.println("4 - andar para a direita");
-            System.out.println("5 - ver recursos atuais");
+
+        System.out.println("Escolha o que fazer");
+        System.out.println("1 - andar para cima");
+        System.out.println("2 - andar para baixo");
+        System.out.println("3 - andar para a esquerda");
+        System.out.println("4 - andar para a direita");
+        System.out.println("5 - ver recursos atuais");
+
+        do {
+            while (!Main.scanner.hasNextInt()) Main.scanner.next();
+
             opcao = Main.scanner.nextInt();
-            System.out.println(opcao);
-        }
+        } while (opcao < 1 || opcao > 5);
         return opcao;
     }
 }
