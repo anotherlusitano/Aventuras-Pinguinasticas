@@ -7,7 +7,7 @@
  * {@link Recursos#moral} - e a moral que os tripulantes do {@link Barco} tem para continuar <br>
  * {@link Recursos#moral} - e a vida dos tripulantes do {@link Barco}
  */
-public class Recursos {
+public class Recursos extends RecursosAbstratos {
     /** E a energia que faz os jogadores poderem se mover no barco */
     private int energia;
 
