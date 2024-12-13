@@ -6,7 +6,7 @@
  * {@link Opcao#custo} - e os {@link Recursos} que o {@link Barco} vai perder ao fazer a {@link Missao}<br>
  * {@link Opcao#ganho} - e os {@link Recursos} que o {@link Barco} vai receber ao fazer a {@link Missao}
  */
-public class Opcao {
+public class Opcao extends OpcaoAbstrata {
     /** E o nome que a {@link Opcao} vai ter*/
     private String texto;
 
