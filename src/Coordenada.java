@@ -8,7 +8,7 @@ import java.util.Objects;
  * {@link Coordenada#x} - e a coordenada x no mapa. <br>
  * {@link Coordenada#y} - e a coordenada y no mapa.
  */
-public class Coordenada {
+public class Coordenada extends CoordenadaAbstrata{
     /** E a posicao X da {@link Ilha} dentro do {@link Mapa#mapa} */
     private int x;
 
