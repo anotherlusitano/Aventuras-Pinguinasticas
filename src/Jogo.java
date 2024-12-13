@@ -74,7 +74,7 @@ public class Jogo {
             // Vai gastar 5 de energia cada vez que o Barco se mexer para uma nova posiçao
             if (!posicaoAntigaDoBarco.equals(posicaoAtualDoBarco)) {
                 int energia_atual = mapinha.getBarco().getRecursos().getEnergia();
-                mapinha.getBarco().getRecursos().setEnergia(energia_atual-5);
+                mapinha.getBarco().getRecursos().setEnergia(energia_atual-2);
             }
 
             fimDeJogo = verificarFimDeJogo();
