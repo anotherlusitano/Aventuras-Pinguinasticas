@@ -19,11 +19,8 @@ public class Mapa {
     private Ilha[] ilhas;
 
     public Mapa(Barco barco, Ilha[] ilhas) {
-        /// Primeiro vamos receber o Barco e as Ilhas
         this.barco = barco;
         this.ilhas = ilhas;
-
-        /// Depois vamos mete-los no Mapa quando ele e criado
     }
 
     public int[][] getMapa() {
