@@ -79,35 +79,32 @@ public class Mapa {
         switch (direcao) {
             case 1:
                 if (barco_pos_x == 0) {
-                    //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
                 this.barco.getCoordenadas().setX(barco_pos_x - 1);
                 break;
             case 2:
                 if (barco_pos_x == 9) {
-                    //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
                 this.barco.getCoordenadas().setX(barco_pos_x + 1);
                 break;
             case 3:
                 if (barco_pos_y == 0) {
-                    //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
                 this.barco.getCoordenadas().setY(barco_pos_y - 1);
                 break;
             case 4:
                 if (barco_pos_y == 9) {
-                    //System.out.println("O jogador nao pode ir para essa direçao");
                     break;
                 }
                 this.barco.getCoordenadas().setY(barco_pos_y + 1);
                 break;
             default:
                 System.out.println("O jogador nao pode ir para essa direçao");
-        }    }
+        }
+    }
 
     /// Esta funçao mostra o mapa na consola
     public void mostrar() {
