@@ -10,16 +10,12 @@ import java.util.*;
  * Esta e a classe que implementa toda a logica das Ilhas.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Ilha#nome} - e o nome da Ilha <br>
  * {@link Ilha#dificuldade_da_ilha} - e o {@link Dificuldade} da Ilha <br>
  * {@link Ilha#coordenadas} - e as {@link Coordenada}s da Ilha <br>
  * {@link Ilha#visitada} - verifica se a Ilha ja foi visitada pelo {@link Barco} <br>
- * {@link Ilha#visitada} - E a {@link Missao} da Ilha
+ * {@link Ilha#missao} - E a {@link Missao} da Ilha
  */
 public class Ilha {
-    /** E o nome da {@link Ilha} */
-    private String nome;
-
     /** E a {@link Dificuldade} da {@link Ilha} */
     private Dificuldade dificuldade_da_ilha;
 
@@ -33,8 +29,7 @@ public class Ilha {
     private Missao missao;
 
     /// Construtor inicial da Ilha
-    public Ilha(String nome, Dificuldade dificuldadeDaIlha, Coordenada coordenadas, boolean visitada, Missao missao) {
-        this.nome = nome;
+    public Ilha(Dificuldade dificuldadeDaIlha, Coordenada coordenadas, boolean visitada, Missao missao) {
         this.dificuldade_da_ilha = dificuldadeDaIlha;
         this.coordenadas = coordenadas;
         this.visitada = visitada;
@@ -149,16 +144,6 @@ public class Ilha {
      * @return um Array de {@link Ilha}s
      */
     public static Ilha[] criarIlhas(int quantidade_ilhas) {
-        String[] NOMES_PARA_AS_ILHAS = {
-                "GPT", "Piaget", "Pirata","Setubal",
-                "Gelado", "Iceberg", "Dourada", "Projeto Europeu",
-                "Sardinha", "Bacalhau", "Madeirense", "Atlantica",
-                "Colorida", "Neve Azul", "dos Tubaroes", "das Raias",
-                "Congelada", "Inacreditavel", "Pena Branca","Foca",
-                "Perna de Pau", "da Rainha", "Perola Negra", "do Rei",
-                "Arenosa", "Caveira", "do Ovo"
-        };
-
         Ilha[] ilhas = new Ilha[quantidade_ilhas];
 
         /// Estas variaveis servem para contar se existe ilhas de X dificuldade disponiveis
@@ -198,14 +183,22 @@ public class Ilha {
                 coordenadas_da_ilha = coordenadasDificeis.get(ilhasDificeisDisponiveis);
             }
 
+            String[] NOMES_PARA_AS_MISSOES = {
+                    "GPT", "Piaget", "Pirata","Setubal",
+                    "Gelado", "Iceberg", "Dourada", "Projeto Europeu",
+                    "Sardinha", "Bacalhau", "Madeirense", "Atlantica",
+                    "Colorida", "Neve Azul", "dos Tubaroes", "das Raias",
+                    "Congelada", "Inacreditavel", "Pena Branca","Foca",
+                    "Perna de Pau", "da Rainha", "Perola Negra", "do Rei",
+                    "Arenosa", "Caveira", "do Ovo"
+            };
+
             Random random = new Random();
-            String nome_da_ilha = NOMES_PARA_AS_ILHAS[random.nextInt(NOMES_PARA_AS_ILHAS.length)];
-            String nome_da_missao = "Missao " + nome_da_ilha;
+            String nome_da_missao = NOMES_PARA_AS_MISSOES[random.nextInt(NOMES_PARA_AS_MISSOES.length)];
 
             Missao missao = new Missao(nome_da_missao, dificuldade_da_ilha);
 
             ilhas[i] = new Ilha(
-                   nome_da_ilha,
                    dificuldade_da_ilha,
                    coordenadas_da_ilha,
                     false,
@@ -214,14 +207,6 @@ public class Ilha {
         }
 
         return ilhas;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Dificuldade getDificuldade_da_ilha() {

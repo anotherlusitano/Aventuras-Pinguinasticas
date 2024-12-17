@@ -21,9 +21,11 @@ public class JogoGUI extends JFrame {
         topPanel.setOpaque(false); // Fundo transparente
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS)); // Empilha componentes verticalmente
 
+        String nome_da_missao = missao.getNome();
+        String titulo_missao = "Missao " + nome_da_missao;
+
         // Adiciona título no topo
-        String nome = missao.getNome();
-        JLabel titleLabel = new JLabel(nome, SwingConstants.CENTER);
+        JLabel titleLabel = new JLabel(titulo_missao, SwingConstants.CENTER);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 24));
         titleLabel.setForeground(Color.BLACK); // Define a cor do título para preto
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Centraliza o título
