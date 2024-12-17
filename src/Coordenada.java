@@ -9,11 +9,6 @@ public class Coordenada extends CoordenadaAbstrata{
         super(x, y);
     }
 
-    @Override
-    public String toString() {
-        return "Coordenada x: '" + getX() + "', Coordenada y: '" + getY() + "'";
-    }
-
     /**
      Fazemos um Override do metodo equals para poder usar o metodo `add` de um HashSet. <br>
      Ou seja, verificar se Coordenada(x,y) == OutraCoordenada(x,y)
