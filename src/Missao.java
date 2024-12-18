@@ -88,40 +88,27 @@ public class Missao {
     /// Vai retornar uma quantidade de {@link Recursos} dependendo da dificuldade da {@link Missao}
     private Recursos calcularCustos() {
         final Random RANDOM = new Random();
-        int recursos = 0;
 
         if (dificuldade == Dificuldade.FACIL) {
-            recursos = 1 + RANDOM.nextInt(15);
-
-            return new Recursos(recursos, recursos, 0, 0);
+            return new Recursos(RANDOM.nextInt(15)+1, RANDOM.nextInt(15)+1, 0, 0);
         } else if (dificuldade == Dificuldade.MEDIO) {
-            recursos = 20 + RANDOM.nextInt(16);
-
-            return new Recursos(recursos, recursos, recursos, recursos);
+            return new Recursos(RANDOM.nextInt(16)+20, RANDOM.nextInt(16)+20, RANDOM.nextInt(16)+20, RANDOM.nextInt(16)+20);
         } else {
-            recursos = 35 + RANDOM.nextInt(25);
-
-            return new Recursos(recursos, recursos, recursos, (int) (recursos*1.2));
+            return new Recursos(RANDOM.nextInt(25)+35, RANDOM.nextInt(25)+35, RANDOM.nextInt(25)+35, RANDOM.nextInt(25)+35);
         }
     }
 
     /// Vai retornar uma quantidade de {@link Recursos} dependendo da dificuldade da {@link Missao}
     private Recursos calcularGanhos() {
         final Random RANDOM = new Random();
-        int recursos = 0;
 
         if (dificuldade == Dificuldade.FACIL) {
-            recursos = RANDOM.nextInt(16);
-
-            return new Recursos(recursos, recursos, recursos, recursos);
+            return new Recursos(RANDOM.nextInt(16), RANDOM.nextInt(16), RANDOM.nextInt(16), RANDOM.nextInt(16));
         } else if (dificuldade == Dificuldade.MEDIO) {
-            recursos = 10 + RANDOM.nextInt(10);
 
-            return new Recursos(recursos, recursos, recursos, recursos);
+            return new Recursos(RANDOM.nextInt(10)+10, RANDOM.nextInt(10)+10, RANDOM.nextInt(10)+10, RANDOM.nextInt(10)+10);
         } else {
-            recursos = 10 + RANDOM.nextInt(35);
-
-            return new Recursos(recursos, recursos, recursos, recursos);
+            return new Recursos(RANDOM.nextInt(35)+10, RANDOM.nextInt(35)+10, RANDOM.nextInt(35)+10, RANDOM.nextInt(35)+10);
         }
     }
 
