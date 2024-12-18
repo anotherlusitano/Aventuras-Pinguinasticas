@@ -2,22 +2,22 @@
  * Esta classe abstrata serve para criar um modelo para a classe {@link Recursos}.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Recursos#energia} - e a energia que o {@link Barco} precisa para andar <br>
- * {@link Recursos#peixe} - e a comida que os tripulantes do {@link Barco} vao comer <br>
- * {@link Recursos#moral} - e a moral que os tripulantes do {@link Barco} tem para continuar <br>
- * {@link Recursos#moral} - e a vida dos tripulantes do {@link Barco}
+ * {@link Recursos#energia} - é a energia que o {@link Barco} precisa para andar <br>
+ * {@link Recursos#peixe} - é a comida que a tripulação do {@link Barco} vai comer <br>
+ * {@link Recursos#moral} - é a moral que a tripulação do {@link Barco} tem para continuar <br>
+ * {@link Recursos#vida_da_tripulacao} - é a vida da tripulação do {@link Barco}
  */
 public abstract class RecursosAbstratos {
-    /** E a energia que faz os jogadores poderem se mover no barco */
+    /** É a energia que faz o barco poder se mover */
     private int energia;
 
-    /** E os suprimentos, aquilo que faz a tripulacao ficar viva */
+    /** É a comida que faz a tripulação ficar viva */
     private int peixe;
 
-    /** E a moral da tripulacao, faz que ela nao te abandone */
+    /** É a moral da tripulação, faz que ela não te abandone */
     private int moral;
 
-    /** E a vida da tripulacao */
+    /** É a vida da tripulação */
     private int vida_da_tripulacao;
 
     public RecursosAbstratos(int energia, int peixe, int moral, int vida_da_tripulacao) {
