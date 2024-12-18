@@ -2,18 +2,18 @@
  * Esta classe abstrata serve para criar um modelo para a classe {@link Opcao}.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Opcao#texto} - e o texto que a {@link Opcao} vai ter<br>
- * {@link Opcao#custo} - e os {@link Recursos} que o {@link Barco} vai perder ao fazer a {@link Missao}<br>
- * {@link Opcao#ganho} - e os {@link Recursos} que o {@link Barco} vai receber ao fazer a {@link Missao}
+ * {@link Opcao#texto} - é o texto que a {@link Opcao} vai ter<br>
+ * {@link Opcao#custo} - é os {@link Recursos} que o {@link Barco} vai perder ao fazer a {@link Missao}<br>
+ * {@link Opcao#ganho} - é os {@link Recursos} que o {@link Barco} vai receber ao fazer a {@link Missao}
  */
 public abstract class OpcaoAbstrata {
-    /** E o nome que a {@link Opcao} vai ter*/
+    /** É o nome que a {@link Opcao} vai ter*/
     private String texto;
 
-    /** E os {@link Recursos} que o {@link Barco} vai perder ao aceitar a missao*/
+    /** É os {@link Recursos} que o {@link Barco} vai perder ao aceitar a missão*/
     private Recursos custo;
 
-    /** E os {@link Recursos} que o {@link Barco} vai receber ao aceitar a missao*/
+    /** É os {@link Recursos} que o {@link Barco} vai receber ao aceitar a missão*/
     private Recursos ganho;
 
     public OpcaoAbstrata(String texto, Recursos custo, Recursos ganho) {
