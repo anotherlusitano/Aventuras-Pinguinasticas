@@ -1,25 +1,25 @@
 /**
  * Serve para importar todas as utilidades que vamos usar, como: <br>
  * - ArrayList, ou seja um array <br>
- * - Random, a classe para gerar os numeros aleatorios <br>
- * - HashSet, e uma colecao de itens unicos
+ * - Random, a classe para gerar os números aleatórios <br>
+ * - HashSet, e uma coleção de itens únicos
   */
 import java.util.*;
 
 /**
- * Esta e a classe que implementa toda a logica das Ilhas.
+ * Esta é a classe que implementa toda a lógica das Ilhas.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Ilha#dificuldade_da_ilha} - e o {@link Dificuldade} da Ilha <br>
- * {@link Ilha#coordenadas} - e as {@link Coordenada}s da Ilha <br>
+ * {@link Ilha#dificuldade_da_ilha} - é o {@link Dificuldade} da Ilha <br>
+ * {@link Ilha#coordenadas} - são as {@link Coordenada}s da Ilha <br>
  * {@link Ilha#visitada} - verifica se a Ilha ja foi visitada pelo {@link Barco} <br>
- * {@link Ilha#missao} - E a {@link Missao} da Ilha
+ * {@link Ilha#missao} - é a {@link Missao} da Ilha
  */
 public class Ilha {
-    /** E a {@link Dificuldade} da {@link Ilha} */
+    /** É a {@link Dificuldade} da {@link Ilha} */
     private Dificuldade dificuldade_da_ilha;
 
-    /** E as {@link Coordenada} da {@link Ilha} */
+    /** São as {@link Coordenada}s da {@link Ilha} */
     private Coordenada coordenadas;
 
     /** Determina se a {@link Ilha} foi visitada */
@@ -48,11 +48,11 @@ public class Ilha {
     }
 
     /**
-     * Funcao que gera uma lista de posicoes <i>x</i> e <i>y</i> de uma {@link Ilha}, baseado na sua {@link Dificuldade}. <br>
-     * Todos os valores sao pre-computados/gerados para uma otimizaçao na geraçao, ja que se fossemos com valores aleatorios demoraria imenso tempo.<br>
-     * Pode ter no maximo 72 Ilhas, sendo elas, 12 faceis, 24 medias e 36 dificeis.<br><br>
-     * Explicaçao: <br>
-     * Esta e a organizaçao das {@link Ilha}s pelo mapa:
+     * Função que gera uma lista de posições <i>x</i> e <i>y</i> de uma {@link Ilha}, baseado na sua {@link Dificuldade}. <br>
+     * Todos os valores são pré-computados/gerados para uma otimização na geração, ja que se fossemos com valores aleatórios demoraria imenso tempo.<br>
+     * Pode ter no máximo 72 Ilhas, sendo elas, 12 fáceis, 24 médias e 36 difíceis.<br><br>
+     * Explicação: <br>
+     * Esta é a organização das {@link Ilha}s pelo mapa:
      * <pre>
      * 0 0 1 1 0 1 1 0 1 1
      * 0 0 1 1 0 1 1 0 1 1
@@ -67,8 +67,8 @@ public class Ilha {
      *
      * 1 = Ilha ; 0 = Onda
      * </pre>
-     * Cada divisao representa uma dificuldade, ou seja, a primeira divisao de 1's representa as Ilhas de {@link Dificuldade#FACIL},
-     * a segunda divisao representa as Ilhas de {@link Dificuldade#MEDIO} e a ultima divisao representa a {@link Dificuldade#DIFICIL}.
+     * Cada divisão representa uma dificuldade, ou seja, a primeira divisão de 1's representa as Ilhas de {@link Dificuldade#FACIL},
+     * a segunda divisão representa as Ilhas de {@link Dificuldade#MEDIO} e a última divisão representa a {@link Dificuldade#DIFICIL}.
      * <br><br>
      * Para ser considerado uma {@link Ilha} o <i>X</i> ou o <i>Y</i> precisa de ser 2, 3, 5, 6, 8 ou 9.<br>
      * Primeiro vamos escolher gerar todas as posiçoes com X, ou seja:
@@ -79,9 +79,9 @@ public class Ilha {
      * <pre>
      *     (Y = 2 & Y = 3) & X = FOR(0..Y-1)
      * </pre>
-     * Para cada {@link Coordenada} gerada, vamos adicionar a uma lista, e depois vamos dar um <i>SHUFFLE</i> nessa lista para torna-la pseudo-aleatoria.<br>
+     * Para cada {@link Coordenada} gerada, vamos adicionar a uma lista, e depois vamos dar um <i>SHUFFLE</i> nessa lista para torna-la pseudo-aleatória.<br>
      * <br>
-     * <b>WARNING:</b> o unico "se nao" desta funçao e que gera todas as Coordenadas das Ilhas, de uma dada dificuldade, mesmo que so queiramos 1 Coordenada.
+     * <b>WARNING:</b> o único "se não" desta função é que gera todas as Coordenadas das Ilhas, de uma dada dificuldade, mesmo que só queiramos 1 Coordenada.
      * @param dificuldade
      * @return as posicoes X e Y
      */
@@ -135,23 +135,23 @@ public class Ilha {
                 return coordenadas;
             }
         }
-        // Isto provavelmente nunca vai acontecer ja que so existe 3 dificuldades
+        // Isto provavelmente nunca vai acontecer já que só existe 3 dificuldades
         return coordenadas;
     }
 
     /**
-     * @param quantidade_ilhas o numero de ilhas a serem criadas
+     * @param quantidade_ilhas o número de ilhas a serem criadas
      * @return um Array de {@link Ilha}s
      */
     public static Ilha[] criarIlhas(int quantidade_ilhas) {
         Ilha[] ilhas = new Ilha[quantidade_ilhas];
 
-        /// Estas variaveis servem para contar se existe ilhas de X dificuldade disponiveis
+        /// Estas variáveis servem para contar se existe ilhas de X dificuldade disponíveis
         int ilhasFaceisDisponiveis = 12;
         int ilhasMediasDisponiveis = 24;
         int ilhasDificeisDisponiveis = 36;
 
-        /// Sao as listas de coordenadas UNICAS, divididas por Dificuldade
+        /// São as listas de coordenadas ÚNICAS, divídidas por Dificuldade
         List<Coordenada> coordenadasFaceis = gerarCoordenadas(Dificuldade.FACIL);
         List<Coordenada> coordenadasMedias = gerarCoordenadas(Dificuldade.MEDIO);
         List<Coordenada> coordenadasDificeis = gerarCoordenadas(Dificuldade.DIFICIL);
@@ -162,7 +162,7 @@ public class Ilha {
             /*
                 Primeiro geramos uma dificuldade.
                 Depois verificamos se essa ilha pode ter essa dificuldade.
-                Se nao poder ter essa dificuldade, vai gerar uma nova dificuldade ate dar.
+                Se não poder ter essa dificuldade, vai gerar uma nova dificuldade até dar.
              */
             Dificuldade dificuldade_da_ilha = gerarDificuldade();
 
@@ -184,12 +184,12 @@ public class Ilha {
             }
 
             String[] NOMES_PARA_AS_MISSOES = {
-                    "GPT", "Piaget", "Pirata","Setubal",
+                    "GPT", "Piaget", "Pirata","Setúbal",
                     "Gelado", "Iceberg", "Dourada", "Projeto Europeu",
-                    "Sardinha", "Bacalhau", "Madeirense", "Atlantica",
-                    "Colorida", "Neve Azul", "dos Tubaroes", "das Raias",
-                    "Congelada", "Inacreditavel", "Pena Branca","Foca",
-                    "Perna de Pau", "da Rainha", "Perola Negra", "do Rei",
+                    "Sardinha", "Bacalhau", "Madeirense", "Atlântica",
+                    "Colorida", "Neve Azul", "dos Tubarões", "das Raias",
+                    "Congelada", "Inacreditável", "Pena Branca","Foca",
+                    "Perna de Pau", "da Rainha", "Pérola Negra", "do Rei",
                     "Arenosa", "Caveira", "do Ovo"
             };
 

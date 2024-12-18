@@ -2,14 +2,14 @@
  * Esta classe abstrata serve para criar um modelo para a classe {@link Coordenada}.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Coordenada#x} - e a coordenada x no mapa. <br>
- * {@link Coordenada#y} - e a coordenada y no mapa.
+ * {@link Coordenada#x} - é a coordenada x no mapa. <br>
+ * {@link Coordenada#y} - é a coordenada y no mapa.
  */
 public abstract class CoordenadaAbstrata {
-    /** E a posicao X da {@link Ilha} dentro do {@link Mapa#mapa} */
+    /** É a posição X dentro do {@link Mapa#mapa} */
     private int x;
 
-    /** E a posicao Y da {@link Ilha} dentro do {@link Mapa#mapa} */
+    /** É a posição Y dentro do {@link Mapa#mapa} */
     private int y;
 
     public CoordenadaAbstrata(int x, int y) {

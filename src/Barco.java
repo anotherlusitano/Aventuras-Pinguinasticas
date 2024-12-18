@@ -1,12 +1,12 @@
 /**
- * Esta e a classe que implementa toda a logica do Barco.
+ * Esta é a classe que implementa toda a lógica do Barco.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Barco#coordenadas} - e as {@link Coordenada}s do Barco <br>
- * {@link Barco#recursos} - e os {@link Recursos} do Barco
+ * {@link Barco#coordenadas} - são as {@link Coordenada}s do Barco <br>
+ * {@link Barco#recursos} - são os {@link Recursos} do Barco
  */
 public class Barco extends Jogador {
-    /** E as {@link Coordenada} do {@link Barco} */
+    /** São as {@link Coordenada} do {@link Barco} */
     private Coordenada coordenadas;
 
     /**
@@ -21,9 +21,9 @@ public class Barco extends Jogador {
     /**
      * Vai construir o objeto Barco
      *
-     * @param recursos sao os {@link Recursos} do Barco
+     * @param recursos são os {@link Recursos} do Barco
      *
-     * O resto dos parametros servem para construir o {@link Jogador}
+     * O resto dos parâmetros servem para construir o {@link Jogador}
      * @return o objeto {@link Barco}
      */
     public Barco(String nome, Recursos recursos) {
@@ -48,7 +48,7 @@ public class Barco extends Jogador {
         this.coordenadas = coordenadas;
     }
 
-    /// Se algum dos {@link Recursos} estiver a zero ou menos, vai retornar falso
+    /// Se algum dos {@link Recursos} estiver a zero, ou menos, vai retornar falso
     public boolean temRecursos() {
         Recursos recursos = this.getRecursos();
 

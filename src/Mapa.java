@@ -1,21 +1,21 @@
 import java.util.List;
 
 /**
- * Esta e a classe que implementa toda a logica do Mapa.
+ * Esta é a classe que implementa toda a lógica do Mapa.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Mapa#mapa} - e a area do nosso mapa <br>
- * {@link Mapa#barco} - e o {@link Barco} que vai estar dentro do mapa <br>
- * {@link Mapa#ilhas} - e as {@link Ilha} que vao estar dentro do mapa
+ * {@link Mapa#mapa} - é a área do nosso mapa <br>
+ * {@link Mapa#barco} - é o {@link Barco} que vai estar dentro do mapa <br>
+ * {@link Mapa#ilhas} - é as {@link Ilha}s que vão estar dentro do mapa
 */
 public class Mapa {
     /** Um mapa 10 por 10 em que int[pos_x][pos_y] */
     private int[][] mapa = new int[10][10];
 
-    /** E o {@link Barco} que vai estar dentro do {@link Mapa#mapa} */
+    /** É o {@link Barco} que vai estar dentro do {@link Mapa#mapa} */
     private Barco barco;
 
-    /** Sao as {@link Ilha} que vao ser geradas dentro do {@link Mapa#mapa} */
+    /** São as {@link Ilha}s que vão ser geradas dentro do {@link Mapa#mapa} */
     private Ilha[] ilhas;
 
     public Mapa(Barco barco, Ilha[] ilhas) {
@@ -48,7 +48,7 @@ public class Mapa {
     }
 
     /**
-     * Esta funçao faz que o Mapa se reconstrua
+     * Esta função faz que o Mapa se reconstrua
      * com as coordenadas das {@link Ilha}s e do {@link Jogador}
       */
     public void atualizarMapa() {
@@ -68,7 +68,7 @@ public class Mapa {
         this.mapa[pos_x][pos_y] = 5;
     }
 
-    /// Esta funcao serve para mover o {@link Barco} dentro do {@link Mapa}
+    /// Esta função serve para mover o {@link Barco} dentro do {@link Mapa}
     public void moverBarco(int direcao) {
         int barco_pos_x = this.barco.getCoordenadas().getX();
         int barco_pos_y = this.barco.getCoordenadas().getY();
@@ -99,11 +99,11 @@ public class Mapa {
                 this.barco.getCoordenadas().setY(barco_pos_y + 1);
                 break;
             default:
-                System.out.println("O jogador nao pode ir para essa direçao");
+                System.out.println("O jogador não pode ir para essa direção");
         }
     }
 
-    /// Esta funçao mostra o mapa na consola
+    /// Esta função mostra o mapa na consola
     public void mostrar() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -120,10 +120,10 @@ public class Mapa {
     }
 
     /**
-        Serve para verificar se o {@link Barco} esta na mesma posicao que a {@link Ilha}. <br>
-        Primeiro verifica se o {@link Barco} esta na mesma posicao da {@link Ilha}; <br>
-        Depois verifica se essa Ilha foi visitada, e caso nao seja, vai retornar a Ilha. <br>
-        Caso o Barco nao esteja na Ilha, vai retornar null.
+        Serve para verificar se o {@link Barco} está na mesma posição que a {@link Ilha}. <br>
+        Primeiro, verifica se o {@link Barco} está na mesma posição da {@link Ilha}; <br>
+        Depois verifica se essa Ilha foi visitada, e caso não esteja, vai retornar a Ilha. <br>
+        Caso o Barco não esteja na Ilha, vai retornar null.
     */
     public Ilha verificarChegouNaIlha() {
         for (Ilha ilha : this.ilhas) {
@@ -137,7 +137,7 @@ public class Mapa {
         return null;
     }
 
-    /// O nome indica tudo, nao tenho mais nada a declarar.
+    /// O nome indica tudo, não tenho mais nada a declarar.
     public boolean verificarSeTodasAsIlhasForamVisitadas() {
         int numeroIlhasVisitadas = 0;
 

@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 /**
- * Esta e a classe que implementa toda a logica das Coordenadas. <br>
- * Uma Coordenada e a posicao X e Y dentro do {@link Mapa}.
+ * Esta é a classe que implementa toda a lógica das Coordenadas. <br>
+ * Uma Coordenada é a posição X e Y dentro do {@link Mapa}.
  */
 public class Coordenada extends CoordenadaAbstrata{
     public Coordenada(int x, int y) {
@@ -10,7 +10,7 @@ public class Coordenada extends CoordenadaAbstrata{
     }
 
     /**
-     Fazemos um Override do metodo equals para poder usar o metodo `add` de um HashSet. <br>
+     Fazemos um Override do método equals para poder usar o método `add` de um HashSet. <br>
      Ou seja, verificar se Coordenada(x,y) == OutraCoordenada(x,y)
      */
     @Override

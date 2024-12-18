@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Esta e a classe que implementa toda a logica das Missoes.
+ * Esta é a classe que implementa toda a lógica das Missões.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Missao#nome} - e o nome da Missao <br>
- * {@link Missao#dificuldade} - e a dificuldade da Missao <br>
- * {@link Missao#opcoes} - e as {@link Opcao}s da Missao
+ * {@link Missao#nome} - é o nome da Missão <br>
+ * {@link Missao#dificuldade} - é a dificuldade da Missão <br>
+ * {@link Missao#opcoes} - é as {@link Opcao}s da Missão
  */
 public class Missao {
-    /** E o nome da Missao que vai aparecer ao {@link Jogador} */
+    /** É o nome da Missão que vai aparecer ao {@link Jogador} */
     private String nome;
 
-    /** E a {@link Dificuldade} da Missao */
+    /** É a {@link Dificuldade} da Missão */
     private Dificuldade dificuldade;
 
-    /** Sao as {@link Opcao}s que a Missao vai ter */
+    /** São as {@link Opcao}s que a Missão vai ter */
     private List<Opcao> opcoes;
 
     public Missao(String nome, Dificuldade dificuldade) {
@@ -31,13 +31,13 @@ public class Missao {
     private List<Opcao> gerarOpcoes() {
         List<Opcao> opcoes = new ArrayList<>();
 
-        // A logica destas 3 linhas e criar uma lista que vai ate a quantidade de TEXTO_DAS_OPCOES que tivermos
-        // ou seja, se tivermos 6 Opcoes para o texto, a lista tem de estar preenchida de 0..6
-        // e com isso, vai trocar a ordem dos numeros para dar nos Opcoes "aleatorias" e unicas
-        // o problema disto e que precisamos ter a mesma quantidade de TEXTO_DAS_OPCOES para cada dificuldade
-        // e tambem precisamos mudar ate onde vai o *i*, ja que ele representa ate qual Opcao vai escolher
-        // e claro que quanto mais Opcoes tivermos, mais cresce em complexidade O(N)
-        // mas por agora, esta uma boa soluçao.
+        // A lógica destas 3 linhas de código é criar uma lista que vai até à TEXTO_DAS_OPCOES.length que tivermos
+        // ou seja, se tivermos 6 Opções para o texto, a lista tem de estar preenchida de 0..6
+        // e com isso, vai trocar a ordem dos números para dar-nos Opções "aleatórias" e únicas
+        // o problema disto é que precisamos ter a mesma quantidade de TEXTO_DAS_OPCOES para cada dificuldade
+        // e também precisamos mudar até onde vai o *i*, ja que ele representa ate qual Opção vai escolher
+        // e claro, que quanto mais Opções tivermos, mais cresce em complexidade O(N)
+        // mas por agora, está uma boa solução.
         ArrayList<Integer> listaAleatoriaOpcoes = new ArrayList<Integer>();
         for (int i=0; i<12; i++) listaAleatoriaOpcoes.add(i);
         Collections.shuffle(listaAleatoriaOpcoes);
@@ -53,7 +53,7 @@ public class Missao {
         return opcoes;
     }
 
-    /// Vai gerar o texto da opçao baseado na {@link Dificuldade} da {@link Missao}
+    /// Vai gerar o texto da opção baseado na {@link Dificuldade} da {@link Missao}
     private String gerarTexto(int opcao) {
         if (dificuldade == Dificuldade.FACIL) {
             String[] TEXTO_DAS_OPCOES_FACEIS = {
@@ -67,9 +67,9 @@ public class Missao {
         } else if (dificuldade == Dificuldade.MEDIO) {
             String[] TEXTO_DAS_OPCOES_MEDIO = {
                     "Caçar enguias", "Explorar a selva", "Lutar com caranguejos",
-                    "Nadar com tubaroes", "Lutar com pinguins", "Fazer um Forte contra a tempestade",
+                    "Nadar com tubarões", "Lutar com pinguins", "Fazer um Forte contra a tempestade",
                     "Invadir o tanque de peixes", "Roubar ouro", "Fazer uma festa",
-                    "Apostar no PeixaMilhoes", "Explorar a montanha", "Explorar uma gruta"
+                    "Apostar no PeixaMilhões", "Explorar a montanha", "Explorar uma gruta"
             };
 
             return TEXTO_DAS_OPCOES_MEDIO[opcao];
@@ -78,7 +78,7 @@ public class Missao {
                     "Guerrear contra a Ilha", "Explorar a caverna obscura", "Lutar com piratas",
                     "Nadar com o Kraken", "Roubar a esmeralda perdida", "Matar o rei",
                     "Lutar contra a Macacada", "Roubar o rei", "Roubar piratas",
-                    "Explorar o vulcao", "Invocar o deus pinguim", "Começar uma revoluçao"
+                    "Explorar o vulcão", "Invocar o deus pinguim", "Começar uma revolução"
             };
 
             return TEXTO_DAS_OPCOES_DIFICEIS[opcao];

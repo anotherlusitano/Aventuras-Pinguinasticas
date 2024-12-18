@@ -22,7 +22,7 @@ public class JogoGUI extends JFrame {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS)); // Empilha componentes verticalmente
 
         String nome_da_missao = missao.getNome();
-        String titulo_missao = "Missao " + nome_da_missao;
+        String titulo_missao = "Missão " + nome_da_missao;
 
         // Adiciona título no topo
         JLabel titleLabel = new JLabel(titulo_missao, SwingConstants.CENTER);
@@ -102,13 +102,13 @@ public class JogoGUI extends JFrame {
 
     public static void inicializarInterface(Missao missao, Barco barco) {
         try {
-            // Criamos a Interface para depois deixa-la visivel
+            // Criamos a Interface para depois deixá-la visivel
             JogoGUI gui = new JogoGUI(missao, barco);
 
-            // Usamos o invokeAndWait para so avançar no ciclo quando invocar a interface
+            // Usamos o invokeAndWait para só avançar no ciclo quando invocar a interface
             SwingUtilities.invokeAndWait(() -> gui.setVisible(true));
 
-            // Vamos esperar ate a Interface seja fechada para poder avançar
+            // Vamos esperar até a Interface seja fechada para poder avançar
             while (gui.isDisplayable()) {
                 Thread.sleep(100);
             }
