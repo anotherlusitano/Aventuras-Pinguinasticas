@@ -3,17 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta e a classe que implementa toda a logica do Jogador.
+ * Esta é a classe que implementa toda a lógica do Jogador.
  * <br> <br>
  * Esta classe implementa os seguintes atributos: <br>
- * {@link Jogador#nome} - e o nome do Jogador <br>
- * {@link Jogador#pontuacao} - e a pontuacao final do Jogador <br>
+ * {@link Jogador#nome} - é o nome do Jogador <br>
+ * {@link Jogador#pontuacao} - é a pontuação final do Jogador <br>
  */
 public class Jogador {
-    /** E o nome do Jogador */
+    /** É o nome do Jogador */
     protected String nome;
 
-    /** E a pontuacao do Jogador que vai ser armazenada em um ficheiro*/
+    /** É a pontuação do Jogador que vai ser armazenada em um ficheiro*/
     protected int pontuacao;
 
     public Jogador(String nome) {
@@ -21,9 +21,9 @@ public class Jogador {
         this.pontuacao = 0;
     }
 
-    /// Vai criar o ficheiro pontuacao com a seguinte formataçao:<br>
-    /// nomeJogador;pontuacao <br>
-    /// Vai ter o ponto e virgula a separar
+    /// Vai criar o ficheiro pontuação, com a seguinte formatação:<br>
+    /// nomeJogador;pontuação <br>
+    /// Vai ter o ponto e vírgula a separar
     public void criarFicheiroPontuacao() {
         String nomeEpontuacao = this.nome + ";" + this.pontuacao;
 
@@ -41,8 +41,8 @@ public class Jogador {
     }
 
     /**
-     * Esta funçao vai ler e guardar todas as linhas do ficheiro.<br>
-     * Depois vai alterar a pontuacao da ultima linha do ficheiro. <br>
+     * Esta função vai ler e guardar todas as linhas do ficheiro.<br>
+     * Depois vai alterar a pontuação da última linha do ficheiro. <br>
      * E por fim, vai escrever tudo de volta no ficheiro
      */
     public void atualizarPontuacao() {
@@ -73,7 +73,7 @@ public class Jogador {
             writer.close();
 
         } catch (IOException e) {
-            System.out.println("Aconteceu um erro ao atualizar a pontuacao do ficheiro pontuacao.txt: " + e.getMessage());
+            System.out.println("Aconteceu um erro ao atualizar a pontuação do ficheiro pontuacao.txt: " + e.getMessage());
         }
     }
 
