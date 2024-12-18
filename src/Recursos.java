@@ -1,5 +1,5 @@
 /**
- * Esta e a classe que implementa toda a logica dos Recursos.
+ * Esta é a classe que implementa toda a lógica dos Recursos.
  */
 public class Recursos extends RecursosAbstratos {
     public Recursos(int energia, int peixe, int moral, int vida_da_tripulacao) {
@@ -26,6 +26,6 @@ public class Recursos extends RecursosAbstratos {
 
     @Override
     public String toString() {
-        return "Energia: " + getEnergia() + "\nPeixe: " + getPeixe() + "\nMoral:" + getMoral() + "\nVida da Tripulaçao: "+ getVida_da_tripulacao();
+        return "Energia: " + getEnergia() + "\nPeixe: " + getPeixe() + "\nMoral:" + getMoral() + "\nVida da Tripulação: "+ getVida_da_tripulacao();
     }
 }
