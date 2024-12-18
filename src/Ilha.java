@@ -36,7 +36,7 @@ public class Ilha {
         this.missao = missao;
     }
 
-    public static Dificuldade gerarDificuldade() {
+    private static Dificuldade gerarDificuldade() {
         final Random RANDOM = new Random();
 
         Dificuldade[] todas_dificuldades = Dificuldade.values();
